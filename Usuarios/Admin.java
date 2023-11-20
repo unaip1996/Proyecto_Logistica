@@ -1,4 +1,4 @@
-package ProyectoLogistica;
+package Usuarios;
 
 public class Admin extends Usuario {
     

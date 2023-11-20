@@ -1,5 +1,10 @@
 package Usuarios;
 
+/**
+ * @authot Clemente Navarro
+ * 
+ * Clase abstracta Usuario
+ */
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

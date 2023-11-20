@@ -1,4 +1,4 @@
-package ProyectoLogistica;
+package Usuarios;
 public class Usuariosprom implements Usuarios {
     private String nombre;
     private String contraseña;

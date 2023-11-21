@@ -1,5 +1,10 @@
 package operaciones;
 
+/**
+ * @author unai
+ *
+ * Clase RutaAerea, lleva el registro de los aeropuertos por los que pasa y el vuelo asignado
+ */
 public class RutaAerea extends Ruta{
 
     private Aeropuerto aeropuertoOrigen;
@@ -7,6 +12,8 @@ public class RutaAerea extends Ruta{
 
     private String idVuelo;
     private String aerolinea;
+
+    //Constructores
 
 
     public RutaAerea() {
@@ -20,6 +27,8 @@ public class RutaAerea extends Ruta{
         this.idVuelo = idVuelo;
         this.aerolinea = aerolinea;
     }
+
+    // getters / setters
 
     public Aeropuerto getAeropuertoOrigen() {
         return aeropuertoOrigen;

@@ -1,5 +1,10 @@
 package operaciones;
 
+/**
+ * @author unai
+ *
+ * Clase RutaMaritima, lleva el registro de los puertos por los que pasa y el contenedor asignado
+ */
 public class RutaMaritima extends Ruta {
 
     private Puerto puertoOrigen;
@@ -7,6 +12,8 @@ public class RutaMaritima extends Ruta {
 
     private String nombreBarco;
     private String idContenedor;
+
+    //Constructores
 
 
     public RutaMaritima() {
@@ -20,6 +27,8 @@ public class RutaMaritima extends Ruta {
         this.nombreBarco = nombreBarco;
         this.idContenedor = idContenedor;
     }
+
+    // getters / setters
 
     public Puerto getPuertoOrigen() {
         return puertoOrigen;

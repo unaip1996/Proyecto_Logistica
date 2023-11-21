@@ -2,6 +2,12 @@ package operaciones;
 
 import java.util.ArrayList;
 
+
+/**
+ * @author Unai
+ *
+ * Clase Empaquetado, esta lleva el registro del listado del listado de productos que contiene y las medidas del paquete
+ */
 public class Empaquetado {
 
     private ArrayList<Producto> productos;
@@ -10,9 +16,20 @@ public class Empaquetado {
     private double alturaMm;
     private double diagonalMm;
 
+    //Constructores
+
     public Empaquetado() {
     }
 
+    /**
+     * Constructor con parametros
+     *
+     * @param productos
+     * @param pesoKg
+     * @param anchuraMm
+     * @param alturaMm
+     * @param diagonalMm
+     */
     public Empaquetado(ArrayList<Producto> productos, double pesoKg, double anchuraMm, double alturaMm, double diagonalMm) {
         this.productos = productos;
         this.pesoKg = pesoKg;
@@ -20,6 +37,10 @@ public class Empaquetado {
         this.alturaMm = alturaMm;
         this.diagonalMm = diagonalMm;
     }
+
+
+
+    // getters / setters
 
     public ArrayList<Producto> getProductos() {
         return productos;

@@ -1,28 +1,24 @@
 package Usuarios;
-public class Usuariosprom implements Usuarios {
-    private String nombre;
-    private String contraseña;
+/**
+ * @authot Clemente Navarro
+ * 
+ * Clase abstracta Usuario
+ */
+import java.util.List;
+public class Usuariosprom extends Usuario {
+    
 
-    // Constructor que toma nombre y contraseña como parámetros
-    public Usuariosprom(String nombre, String contraseña) {
-        this.nombre = nombre;
-        this.contraseña = contraseña;
+
+     // Constructor que toma nombre y contraseña como parámetros
+     public Usuariosprom(String nick, String password, String numberphone, String mail) {
+        super(nick, password, numberphone, mail, USERTYPE);
     }
-
     @Override
-    public String getNombre() {
-        return nombre;
+    List<String> getUserInfo(){
+        return userinfo;
     }
-
     @Override
-    public String getTipoUsuario() {
-        return "Usuario Promedio";
+    void showhistorial(){
     }
-
-    @Override
-    public void mostrarInformacion() {
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Contraseña: " + contraseña);  // No es recomendado mostrar la contraseña, esto es solo un ejemplo
-        System.out.println("Tipo de Usuario: " + getTipoUsuario());
-    }
+   
 }

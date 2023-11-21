@@ -1,28 +1,46 @@
-package ProyectoLogistica;
-public class Usuariosprom implements Usuarios {
-    private String nombre;
-    private String contraseña;
-
-    // Constructor que toma nombre y contraseña como parámetros
-    public Usuariosprom(String nombre, String contraseña) {
-        this.nombre = nombre;
-        this.contraseña = contraseña;
+package Usuarios;
+/**
+ * @authot Clemente Navarro
+ * 
+ * Clase abstracta Usuario
+ */
+import java.util.List;
+public class Usuariosprom extends Usuario {
+     // Constructor que toma nombre y contraseña como parámetros
+    public Usuariosprom(String nick, String password, String numberphone, String mail) {
+        super(nick, password, numberphone, mail, USERTYPE);
     }
-
     @Override
-    public String getNombre() {
-        return nombre;
+    List<String> getUserInfo(){
+        return userinfo;
     }
-
     @Override
-    public String getTipoUsuario() {
-        return "Usuario Promedio";
+    void showhistorial(){
     }
-
-    @Override
-    public void mostrarInformacion() {
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Contraseña: " + contraseña);  // No es recomendado mostrar la contraseña, esto es solo un ejemplo
-        System.out.println("Tipo de Usuario: " + getTipoUsuario());
+    //getters
+    private String getNick(){
+        return this.nick;
+    }
+    private String getPassword(){
+        return this.password;
+    }
+    private String getNumberphone(){
+        return this.numberphone;
+    }
+    private String getMail(){
+        return this.mail;
+    }
+    //setters
+    private void setNick(String elem){
+        this.nick = elem;
+    }
+    private void setPassword(String elem){
+        this.password = elem;
+    }
+    private void setNumberphone(String elem){
+        this.numberphone= elem;
+    }
+    private void setMail(String elem){
+        this.mail= elem;
     }
 }

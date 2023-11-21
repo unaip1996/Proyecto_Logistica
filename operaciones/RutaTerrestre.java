@@ -1,9 +1,16 @@
 package operaciones;
 
+/**
+ * @author unai
+ *
+ * Clase RutaAerea, lleva el registro del coche asignado
+ */
 public class RutaTerrestre extends Ruta{
 
     private String vehiculo;
     private String matricula;
+
+    //Constructores
 
     public RutaTerrestre() {
     }
@@ -13,6 +20,8 @@ public class RutaTerrestre extends Ruta{
         this.vehiculo = vehiculo;
         this.matricula = matricula;
     }
+
+    // getters / setters
 
     public String getVehiculo() {
         return vehiculo;

@@ -5,10 +5,10 @@ import java.util.Date;
 public class Factura {
     private String numeroFactura;
     private Date fecha;
-    private String cliente; //aca el cliente puede ser el usuario?
+    private Usuarios.Usuario cliente; // Clase Usurio
     private double montoTotal;
 
-    public Factura(String numeroFactura, Date fecha, String cliente, double montoTotal) {
+    public Factura(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal) {
         this.numeroFactura = numeroFactura;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -28,7 +28,7 @@ class FacturaMaritima extends Factura {
     private String puertoOrigen;
     private String puertoDestino;
 
-    public FacturaMaritima(String numeroFactura, Date fecha, String cliente, double montoTotal, String puertoOrigen, String puertoDestino) {
+    public FacturaMaritima(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String puertoOrigen, String puertoDestino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.puertoOrigen = puertoOrigen;
         this.puertoDestino = puertoDestino;
@@ -48,7 +48,7 @@ class FacturaTerrestre extends Factura {
     private String origen;
     private String destino;
 
-    public FacturaTerrestre(String numeroFactura, Date fecha, String cliente, double montoTotal, String origen, String destino) {
+    public FacturaTerrestre(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String origen, String destino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.origen = origen;
         this.destino = destino;
@@ -68,7 +68,7 @@ class FacturaAerea extends Factura {
     private String aeropuertoOrigen;
     private String aeropuertoDestino;
 
-    public FacturaAerea(String numeroFactura, Date fecha, String cliente, double montoTotal, String aeropuertoOrigen, String aeropuertoDestino) {
+    public FacturaAerea(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String aeropuertoOrigen, String aeropuertoDestino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.aeropuertoOrigen = aeropuertoOrigen;
         this.aeropuertoDestino = aeropuertoDestino;

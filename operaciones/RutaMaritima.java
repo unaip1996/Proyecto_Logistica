@@ -18,6 +18,7 @@ public class RutaMaritima extends Ruta {
 
     public RutaMaritima() {
         super();
+        this.tipo = Ruta.TIPO_MARITIMA;
     }
 
     public RutaMaritima(Coordenada origen, Coordenada destino, Puerto puertoOrigen, Puerto puertoDestino, String nombreBarco, String idContenedor) {
@@ -26,6 +27,7 @@ public class RutaMaritima extends Ruta {
         this.puertoDestino = puertoDestino;
         this.nombreBarco = nombreBarco;
         this.idContenedor = idContenedor;
+        this.tipo = Ruta.TIPO_MARITIMA;
     }
 
     // getters / setters

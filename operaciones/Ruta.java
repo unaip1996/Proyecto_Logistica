@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
  *
  * Clase padre Ruta, contiene informacion sobre origen, llegada, y el tipo
  */
-public class Ruta {
+public abstract class Ruta {
 
     //Constantes internas de la clase para saber el tipo de ruta que es
     final static byte TIPO_AEREA = 0;
     final static byte TIPO_MARITIMA = 1;
     final static byte TIPO_TERRESTRE = 2;
 
-    //Variable para el tipo, aunque lo podemos controlarlo por las clases hijas, puede venir bien para guardarla en BD
-    private int tipo;
+    //Variable para el tipo; aunque podemos controlarlo por las clases hijas, puede venir bien para guardarla en BD
+    protected int tipo;
     private Coordenada origen;
     private Coordenada destino;
     private LocalDateTime salida;
@@ -25,7 +25,7 @@ public class Ruta {
     //Constructores
 
     public Ruta() {
-        //En el momento en el que crea la ruta se le coloca la hora de salida
+        //En el momento en el que se crea la ruta se le coloca la hora de salida
         this.salida = LocalDateTime.now();
     }
 

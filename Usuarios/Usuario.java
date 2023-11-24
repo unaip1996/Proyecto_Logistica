@@ -1,7 +1,7 @@
 package Usuarios;
 
 /**
- * @authot Clemente Navarro
+ * @author Clemente Navarro
  * 
  * Clase abstracta Usuario
  */
@@ -38,13 +38,19 @@ public abstract class Usuario{
      }
      //Este método servirá para mostrar toda la información de un usuario
      abstract List<String> getUserInfo();
-     
-     // Método para obtener el tipo de usuario (admin o promedio)
+
+     /**
+      * Método para obtener el tipo de usuario (admin o promedio)
+      *
+      */
      public void getUserType(){
 
      };
-     
-     // Método para mostrar información del usuario (Historial de operaciones/facturación)
+
+     /**
+      * Método para mostrar información del usuario (Historial de operaciones/facturación)
+      *
+      */
      abstract void showhistorial();
      
      

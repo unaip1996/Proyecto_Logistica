@@ -1,12 +1,20 @@
 package Usuarios;
 /**
- * @authot Clemente Navarro
+ * @author Clemente Navarro
  * 
  * Clase abstracta Usuario
  */
 import java.util.List;
 public class Usuariosprom extends Usuario {
-     // Constructor que toma nombre y contraseña como parámetros
+
+    /**
+     * Constructor que toma nombre y contraseña como parámetros
+     *
+     * @param nick
+     * @param password
+     * @param numberphone
+     * @param mail
+     */
     public Usuariosprom(String nick, String password, String numberphone, String mail) {
         super(nick, password, numberphone, mail, USERTYPE);
     }

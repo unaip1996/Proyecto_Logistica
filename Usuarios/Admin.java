@@ -8,11 +8,22 @@ package Usuarios;
 import java.util.List;
 
 public class Admin extends Usuario {
-    // Constructor que toma nombre y contraseña como parámetros
+    /**
+     * Constructor que toma nombre y contraseña como parámetros
+     *
+     * @param nick
+     * @param password
+     * @param numberphone
+     * @param mail
+     */
     public Admin(String nick, String password, String numberphone, String mail) {
         super(nick, password, numberphone, mail, ADMINTYPE);
     }
-    // Método para mostrar información del usuario (Historial de operaciones/facturación)
+
+    /**
+     * Método para mostrar información del usuario (Historial de operaciones/facturación)
+     *
+     */
     @Override
     void showhistorial(){
         //Se usará la lógica necesaria paar acceder a la base de datos y mostrar el historial de operaciones/facturas
@@ -43,7 +54,12 @@ public class Admin extends Usuario {
      *  Falta por implementar
     */
 
-    //En el caso de que sepamos el usuario u otro motivo, este método servirá para buscar un objeto específico
+    /**
+     * En el caso de que sepamos el usuario u otro motivo, este método servirá para buscar un objeto específico
+     *
+     * @param x índice del dato
+     * @return dato específico del usuario
+     */
     public String getSpecificInfo(int x){
         try {
              // Verificar si el índice está dentro del rango

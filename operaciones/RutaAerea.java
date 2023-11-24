@@ -18,6 +18,7 @@ public class RutaAerea extends Ruta{
 
     public RutaAerea() {
         super();
+        this.tipo = Ruta.TIPO_AEREA;
     }
 
     public RutaAerea(Coordenada origen, Coordenada destino, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, String idVuelo, String aerolinea) {
@@ -26,6 +27,7 @@ public class RutaAerea extends Ruta{
         this.aeropuertoDestino = aeropuertoDestino;
         this.idVuelo = idVuelo;
         this.aerolinea = aerolinea;
+        this.tipo = Ruta.TIPO_AEREA;
     }
 
     // getters / setters

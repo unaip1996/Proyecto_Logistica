@@ -13,12 +13,15 @@ public class RutaTerrestre extends Ruta{
     //Constructores
 
     public RutaTerrestre() {
+        super();
+        this.tipo = Ruta.TIPO_TERRESTRE;
     }
 
     public RutaTerrestre(Coordenada origen, Coordenada destino, String vehiculo, String matricula) {
         super(origen, destino);
         this.vehiculo = vehiculo;
         this.matricula = matricula;
+        this.tipo = Ruta.TIPO_TERRESTRE;
     }
 
     // getters / setters

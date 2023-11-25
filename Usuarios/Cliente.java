@@ -5,7 +5,7 @@ package Usuarios;
  * Clase abstracta Usuario
  */
 import java.util.List;
-public class Usuariosprom extends Usuario {
+public class Cliente extends Usuario {
 
     /**
      * Constructor que toma nombre y contraseña como parámetros
@@ -15,7 +15,7 @@ public class Usuariosprom extends Usuario {
      * @param numberphone
      * @param mail
      */
-    public Usuariosprom(String nick, String password, String numberphone, String mail) {
+    public Cliente(String nick, String password, String numberphone, String mail) {
         super(nick, password, numberphone, mail, USERTYPE);
     }
     @Override

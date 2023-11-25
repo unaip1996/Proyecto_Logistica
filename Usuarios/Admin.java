@@ -22,7 +22,6 @@ public class Admin extends Usuario {
 
     /**
      * Método para mostrar información del usuario (Historial de operaciones/facturación)
-     *
      */
     @Override
     void showhistorial(){

@@ -5,7 +5,7 @@ package Usuarios;
  * Clase abstracta Usuario
  */
 import java.util.List;
-public class Cliente extends Usuario {
+public class Cliente extends Usuario{
 
     /**
      * Constructor que toma nombre y contraseña como parámetros

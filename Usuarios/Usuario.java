@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Usuario{
+public abstract class Usuario implements Autentificación{
      
      protected String nick;
      protected String password;
@@ -52,7 +52,25 @@ public abstract class Usuario{
       *
       */
      abstract void showhistorial();
+
+
      
-     
+      /*
+      * Métodos provenientes de la interfaz
+      */
+      @Override
+      public void login(String nick, String password){
+          this.nick = nick;
+          this.password = password;
+          /*
+           * Más allá de esto hay que implementar la lógica para averiguar si existe en la base datos 
+           */
+      }
+      @Override
+      public void register(String nick, String password){
+          /*
+           * En este caso sería simplemente añadirlo a la base de datos para que después pueda hacer el login
+           */
+      }
 }
 

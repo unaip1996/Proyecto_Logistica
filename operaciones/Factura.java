@@ -1,6 +1,6 @@
 package operaciones;
 
-import Usuarios.Usuario;
+import Usuarios.Cliente;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ public class Factura { // Definición de la clase Factura
     // Campos privados de la clase Factura
     private String numeroFactura;// Número de factura
     private Date fecha;// Fecha de la factura
-    private Usuario cliente; // Cliente asociado a la factura (de la clase Usuarios.Usuario)
+    private Cliente cliente; // Cliente asociado a la factura (de la clase Usuarios.Usuario)
     private double montoTotal;// Monto total de la factura
 
     /**
@@ -19,7 +19,7 @@ public class Factura { // Definición de la clase Factura
      * @param cliente
      * @param montoTotal
      */
-    public Factura(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal) {
+    public Factura(String numeroFactura, Date fecha, Cliente cliente, double montoTotal) {
         this.numeroFactura = numeroFactura;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -56,7 +56,7 @@ class FacturaMaritima extends Factura {
      * @param puertoOrigen
      * @param puertoDestino
      */
-    public FacturaMaritima(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String puertoOrigen, String puertoDestino) {
+    public FacturaMaritima(String numeroFactura, Date fecha, Cliente cliente, double montoTotal, String puertoOrigen, String puertoDestino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.puertoOrigen = puertoOrigen;
         this.puertoDestino = puertoDestino;
@@ -95,7 +95,7 @@ class FacturaTerrestre extends Factura {
      * @param origen
      * @param destino
      */
-    public FacturaTerrestre(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String origen, String destino) {
+    public FacturaTerrestre(String numeroFactura, Date fecha, Cliente cliente, double montoTotal, String origen, String destino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.origen = origen;
         this.destino = destino;
@@ -121,7 +121,7 @@ class FacturaAerea extends Factura {
     private String aeropuertoOrigen;
     private String aeropuertoDestino;
 
-    public FacturaAerea(String numeroFactura, Date fecha, Usuarios.Usuario cliente, double montoTotal, String aeropuertoOrigen, String aeropuertoDestino) {
+    public FacturaAerea(String numeroFactura, Date fecha, Cliente cliente, double montoTotal, String aeropuertoOrigen, String aeropuertoDestino) {
         super(numeroFactura, fecha, cliente, montoTotal);
         this.aeropuertoOrigen = aeropuertoOrigen;
         this.aeropuertoDestino = aeropuertoDestino;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Usuario implements Autentificación{
+public abstract class Usuario implements Autentificacion {
      
      protected String nick;
      protected String password;

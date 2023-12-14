@@ -2,19 +2,30 @@ package operaciones;
 
 import java.time.LocalDateTime;
 
-public class Ruta {
 
-    final static int TIPO_AEREA = 0;
-    final static int TIPO_MARITIMA = 1;
-    final static int TIPO_TERRESTRE = 2;
+/**
+ * @author Unai
+ *
+ * Clase padre Ruta, contiene informacion sobre origen, llegada, y el tipo
+ */
+public abstract class Ruta {
 
+    //Constantes internas de la clase para saber el tipo de ruta que es
+    final static byte TIPO_AEREA = 0;
+    final static byte TIPO_MARITIMA = 1;
+    final static byte TIPO_TERRESTRE = 2;
 
-    private int tipo;
+    //Variable para el tipo; aunque podemos controlarlo por las clases hijas, puede venir bien para guardarla en BD
+    protected int tipo;
     private Coordenada origen;
     private Coordenada destino;
     private LocalDateTime salida;
     private LocalDateTime llegada;
+
+    //Constructores
+
     public Ruta() {
+        //En el momento en el que se crea la ruta se le coloca la hora de salida
         this.salida = LocalDateTime.now();
     }
 
@@ -24,6 +35,8 @@ public class Ruta {
 
         this.salida = LocalDateTime.now();
     }
+
+    // getters / setters
 
     public Coordenada getOrigen() {
         return origen;

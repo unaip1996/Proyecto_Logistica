@@ -2,12 +2,20 @@ package operaciones;
 
 import java.util.ArrayList;
 
+/**
+ * @author Unai
+ *
+ * Clase principal para operaciones
+ */
 public class Operacion {
 
+    // Definimos rutas como un ArrayList, ya que puede haber mas de 1 ruta para una operación
     private ArrayList<Ruta> rutas;
     private Empaquetado empaquetado;
     private Factura factura;
     private Direccion direccion;
+
+    //Constructores
 
 
     public Operacion() {
@@ -18,6 +26,8 @@ public class Operacion {
         this.empaquetado = empaquetado;
         this.factura = factura;
     }
+
+    // getters / setters
 
     public ArrayList<Ruta> getRutas() {
         return rutas;

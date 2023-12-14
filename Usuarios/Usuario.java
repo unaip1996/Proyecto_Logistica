@@ -5,6 +5,8 @@ package Usuarios;
  * 
  * Clase abstracta Usuario
  */
+import operaciones.Direccion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +18,8 @@ public abstract class Usuario implements Autentificacion {
      protected String type_user;
      protected String numberphone;
      protected String mail;
+     private ArrayList<Direccion> direccion;
+
      // Aparte de los campos exigidos en el enunciado se añadiran dos constantes, que se usarán a lo largo de proyecto
      // Para identificar el tipo de usuario
      protected static final String ADMINTYPE = "1";
@@ -72,5 +76,13 @@ public abstract class Usuario implements Autentificacion {
            * En este caso sería simplemente añadirlo a la base de datos para que después pueda hacer el login
            */
       }
+
+    public ArrayList<Direccion> getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(ArrayList<Direccion> direccion) {
+        this.direccion = direccion;
+    }
 }
 

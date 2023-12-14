@@ -1,5 +1,5 @@
 package operaciones;
-
+import Usuarios.Cliente;
 public class Direccion {
 
     private String pais;
@@ -10,7 +10,9 @@ public class Direccion {
     private String escalera;
     private int codigoPostal;
 
-    public Direccion(String pais, String provincia, String ciudad, String calle, int numero, String escalera, int codigoPostal ){
+    private Cliente cliente;
+
+    public Direccion(String pais, String provincia, String ciudad, String calle, int numero, String escalera, int codigoPostal, Cliente cliente ){
         this.pais = pais;
         this.provincia = provincia;
         this.ciudad = ciudad;
@@ -63,4 +65,11 @@ public class Direccion {
         this.codigoPostal = codigoPostal;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

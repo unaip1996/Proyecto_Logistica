@@ -1,3 +1,5 @@
+package app;
+
 public class App {
     private static DB db;
 

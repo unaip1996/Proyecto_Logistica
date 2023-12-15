@@ -1,4 +1,4 @@
-
+package app;
 
 import jdk.jfr.Event;
 import org.hibernate.*;

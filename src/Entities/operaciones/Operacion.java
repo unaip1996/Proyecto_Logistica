@@ -1,4 +1,4 @@
-package operaciones;
+package src.Entities.operaciones;
 
 import java.util.ArrayList;
 

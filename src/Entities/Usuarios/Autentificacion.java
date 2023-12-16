@@ -1,4 +1,4 @@
-package Usuarios;
+package src.Entities.Usuarios;
 
 public interface Autentificacion {
     //hay que implementar la lógica para averiguar si los parametros en login existe en la base datos 

@@ -1,5 +1,5 @@
-package operaciones;
-import Usuarios.Cliente;
+package src.Entities.operaciones;
+import src.Entities.Usuarios.Cliente;
 public class Direccion {
 
     private String pais;

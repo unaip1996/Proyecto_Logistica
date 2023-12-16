@@ -1,4 +1,4 @@
-package operaciones;
+package src.Entities.operaciones;
 
 public class Producto {
 

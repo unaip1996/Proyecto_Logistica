@@ -1,11 +1,11 @@
-package Usuarios;
+package src.Entities.Usuarios;
 
 /**
  * @author Clemente Navarro
  * 
  * Clase abstracta Usuario
  */
-import operaciones.Direccion;
+import src.Entities.operaciones.Direccion;
 
 import java.util.ArrayList;
 import java.util.Arrays;

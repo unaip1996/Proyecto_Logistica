@@ -1,4 +1,4 @@
-package operaciones;
+package src.Entities.operaciones;
 
 /**
  * @author unai

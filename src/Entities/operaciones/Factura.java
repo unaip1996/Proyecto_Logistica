@@ -1,6 +1,6 @@
-package operaciones;
+package src.Entities.operaciones;
 
-import Usuarios.Cliente;
+import src.Entities.Usuarios.Cliente;
 
 import java.util.Date;
 public class Factura { // Definición de la clase Factura

@@ -1,4 +1,6 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +10,13 @@ import java.time.LocalDateTime;
  *
  * Clase padre Ruta, contiene informacion sobre origen, llegada, y el tipo
  */
+
+@Entity
 public abstract class Ruta {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     //Constantes internas de la clase para saber el tipo de ruta que es
     final static byte TIPO_AEREA = 0;
@@ -17,7 +25,14 @@ public abstract class Ruta {
 
     //Variable para el tipo; aunque podemos controlarlo por las clases hijas, puede venir bien para guardarla en BD
     protected int tipo;
+
+
+    @ManyToOne
+    @JoinColumn(name = "coordenada_id")
     private Coordenada origen;
+
+    @ManyToOne
+    @JoinColumn(name = "coordenada_id")
     private Coordenada destino;
     private LocalDateTime salida;
     private LocalDateTime llegada;
@@ -37,6 +52,14 @@ public abstract class Ruta {
     }
 
     // getters / setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public Coordenada getOrigen() {
         return origen;

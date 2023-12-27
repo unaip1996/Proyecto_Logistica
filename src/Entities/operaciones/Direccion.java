@@ -1,7 +1,13 @@
-package src.Entities.operaciones;
-import src.Entities.Usuarios.Cliente;
+package Entities.operaciones;
+import Entities.Usuarios.Cliente;
+import jakarta.persistence.*;
+
+@Entity
 public class Direccion {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     private String pais;
     private String provincia;
     private String ciudad;
@@ -10,16 +16,18 @@ public class Direccion {
     private String escalera;
     private int codigoPostal;
 
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Cliente cliente;
 
-    public Direccion(String pais, String provincia, String ciudad, String calle, int numero, String escalera, int codigoPostal, Cliente cliente ){
-        this.pais = pais;
-        this.provincia = provincia;
-        this.ciudad = ciudad;
-        this.calle = calle;
-        this.numero = numero;
-        this.escalera = escalera;
-        this.codigoPostal = codigoPostal;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getPais() {
@@ -72,4 +80,5 @@ public class Direccion {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
 }

@@ -1,11 +1,22 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 /**
  * @author Unai
  *
  * Clase para objeto aeropuerto, en el futuro podría ser util para una entidad en BD
  */
+
+@Entity
 public class Aeropuerto {
+
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String nombre;
 
@@ -31,5 +42,13 @@ public class Aeropuerto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

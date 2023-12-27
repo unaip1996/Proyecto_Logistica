@@ -1,13 +1,23 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
 
+
+import jakarta.persistence.*;
 
 /**
  * @author Unai
  *
  * Clase Empaquetado, esta lleva asignada la tarifa escogida y el peso del paquete
  */
+
+@Entity
 public class Empaquetado {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "tarifa_id")
     private Tarifa tarifa;
     private double pesoKg;
 
@@ -29,6 +39,14 @@ public class Empaquetado {
 
     // getters / setters
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public double getPesoKg() {
         return pesoKg;
     }
@@ -44,4 +62,5 @@ public class Empaquetado {
     public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
     }
+
 }

@@ -1,13 +1,22 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 /**
  * @author Unai
  *
  * Clase para objeto puerto, en el futuro podría ser util para una entidad en BD
  */
+
+@Entity
 public class Puerto {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     private String nombre;
 
     //Constructores
@@ -20,6 +29,14 @@ public class Puerto {
     }
 
     // getters / setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getNombre() {
         return nombre;

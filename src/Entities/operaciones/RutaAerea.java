@@ -1,13 +1,25 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  * @author unai
  *
  * Clase RutaAerea, lleva el registro de los aeropuertos por los que pasa y el vuelo asignado
  */
+
+@Entity
 public class RutaAerea extends Ruta{
 
+
+    @ManyToOne
+    @JoinColumn(name = "aeropuerto_id")
     private Aeropuerto aeropuertoOrigen;
+
+    @ManyToOne
+    @JoinColumn(name = "aeropuerto_id")
     private Aeropuerto aeropuertoDestino;
 
     private String idVuelo;

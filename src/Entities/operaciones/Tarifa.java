@@ -1,4 +1,8 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.util.Date;
 
@@ -8,7 +12,13 @@ import java.util.Date;
  *
  * Clase Empaquetado, esta lleva asignada la tarifa escogida y el peso del paquete
  */
+
+@Entity
 public class Tarifa {
+
+    @Id
+    @GeneratedValue
+    private Long id;
     private double pesoKg;
     private double anchuraMn;
     private double alturaMn;
@@ -31,10 +41,19 @@ public class Tarifa {
         this.pesoKg = pesoKg;
         this.anchuraMn = anchuraMn;
         this.alturaMn = alturaMn;
+        this.diagonalMm = diagonalMm;
         this.precio = precio;
     }
 
     // getters / setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public double getPesoKg() {
         return pesoKg;

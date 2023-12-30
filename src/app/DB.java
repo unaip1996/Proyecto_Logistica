@@ -1,4 +1,4 @@
-package src.app;
+package app;
 
 import jdk.jfr.Event;
 import org.hibernate.*;
@@ -29,5 +29,13 @@ public class DB {
             // had trouble building the SessionFactory so destroy it manually.
             StandardServiceRegistryBuilder.destroy(registry);
         }
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

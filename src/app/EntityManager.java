@@ -16,6 +16,13 @@ public class EntityManager {
 
     }
 
+    /**
+     * Devuelve un objeto de entidad que tenga el id proporcionado en la tabla de BD
+     *
+     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param id id de BD
+     * @return Entity
+     */
     private Entity find(Class<?> classname, int id) {
         Entity entity = null;
 
@@ -31,7 +38,15 @@ public class EntityManager {
         return entity;
     }
 
-    private List<Entity> selectWhere(Class<?> classname, String criteria) {
+    /**
+     * Devuelve una lista de objetos de entidad que cumplan los requerimientos de la consulta
+     *
+     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
+     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse :<<int>> empezando por 0 y en orden
+     * @return List<Entity>
+     */
+    private List<Entity> select(Class<?> classname, String criteria, Object[]... parameters) {
         List<Entity> entities = null;
 
         try {
@@ -42,6 +57,10 @@ public class EntityManager {
             String hql = "FROM "+tableName+" d " + criteria;
             Query query = session.createQuery(hql);
 
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i, parameters[i]);
+            }
+
             entities = query.getResultList();
 
         } catch (HibernateException e) {
@@ -51,6 +70,45 @@ public class EntityManager {
         return entities;
     }
 
+
+    /**
+     * Devuelve un objeto de entidad que cumpla los requerimientos de la consulta
+     *
+     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
+     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse :<<int>> empezando por 0 y en orden
+     * @return List<Entity>
+     */
+    private Entity selectOne(Class<?> classname, String criteria, Object[]... parameters) {
+        Entity entity = null;
+
+        try {
+            Session session = App.db.getSessionFactory().openSession();
+
+            Table table = classname.getAnnotation(Table.class);
+            String tableName = table.name();
+            String hql = "FROM "+tableName+" d " + criteria;
+            Query query = session.createQuery(hql);
+
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i, parameters[i]);
+            }
+
+            entity = (Entity) query.getSingleResult();
+
+        } catch (HibernateException e) {
+            LogHandler.log(Level.SEVERE, e.getMessage());
+        }
+
+        return entity;
+    }
+
+    /**
+     * Guardar entidad, sirve para crear y actualizar
+     *
+     * @param entity Entidad de Hibernate
+     * @return Entity
+     */
     private Entity save(Entity entity) {
 
         try {
@@ -67,6 +125,12 @@ public class EntityManager {
         return entity;
     }
 
+    /**
+     * Eliminar entidad, elimina el registro de base de datos
+     *
+     * @param entity Entidad de Hibernate
+     * @return boolean
+     */
     private boolean remove(Entity entity) {
         boolean removed = false;
 

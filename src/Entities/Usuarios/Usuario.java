@@ -1,17 +1,30 @@
-package src.Entities.Usuarios;
+package Entities.Usuarios;
 
 /**
  * @author Clemente Navarro
  * 
  * Clase abstracta Usuario
  */
-import src.Entities.operaciones.Direccion;
+import Entities.operaciones.Direccion;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+@Entity
 public abstract class Usuario implements Autentificacion {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    public Usuario() {
+
+    }
      
      protected String nick;
      protected String password;
@@ -40,7 +53,17 @@ public abstract class Usuario implements Autentificacion {
           //Ver su información, en caso de ser innecesario se modificará la variable.
           userinfo = new ArrayList<>(Arrays.asList(this.nick, this.password, this.numberphone, this.mail));          
      }
-     //Este método servirá para mostrar toda la información de un usuario
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+    //Este método servirá para mostrar toda la información de un usuario
      abstract List<String> getUserInfo();
 
      /**

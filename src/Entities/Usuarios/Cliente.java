@@ -1,4 +1,4 @@
-package src.Entities.Usuarios;
+package Entities.Usuarios;
 /**
  * @author Clemente Navarro
  * 

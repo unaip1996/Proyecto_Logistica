@@ -1,12 +1,21 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 /**
  * @author Unai
  *
  * Clase para el manejo de ubicaciones, siempre tendrá una latitud y longitud
  */
+
+@Entity
 public class Coordenada {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     private double latitud;
     private double longitud;
 
@@ -27,6 +36,14 @@ public class Coordenada {
     }
 
     // getters / setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public double getLatitud() {
         return latitud;

@@ -1,4 +1,7 @@
-package src.Entities.operaciones;
+package Entities.operaciones;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  * @author unai
@@ -7,7 +10,12 @@ package src.Entities.operaciones;
  */
 public class RutaMaritima extends Ruta {
 
+    @ManyToOne
+    @JoinColumn(name = "puerto_id")
     private Puerto puertoOrigen;
+
+    @ManyToOne
+    @JoinColumn(name = "puerto_id")
     private Puerto puertoDestino;
 
     private String nombreBarco;

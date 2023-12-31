@@ -21,7 +21,7 @@
             <version>6.4.0.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
+          <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlin.version}</version>
         </dependency>

@@ -20,13 +20,15 @@ public class DB {
             sessionFactory =
                     new MetadataSources(registry)
                             .addAnnotatedClass(Event.class)
-                            .addFile("../conf/hibernate.properties")
+                            .addFile("../hibernate.properties")
                             .buildMetadata()
                             .buildSessionFactory();
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we
             // had trouble building the SessionFactory so destroy it manually.
+            System.out.println(e.getMessage());
+//            System.exit(0);
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }

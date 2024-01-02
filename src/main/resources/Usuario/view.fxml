@@ -28,7 +28,7 @@
             </Text>
             <ImageView fitHeight="103.0" fitWidth="94.0" layoutX="202.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/logo.png" />
+                  <Image url="@../../../../img/logo.png" />
                </image>
             </ImageView>
          </children>
@@ -52,17 +52,17 @@
             </Button>
             <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="144.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/Users.png" />
+                  <Image url="@../../../../img/Users.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="93.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/User.png" />
+                  <Image url="@../../../../img/User.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="93.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/Password.png" />
+                  <Image url="@../../../../img/Password.png" />
                </image>
             </ImageView>
             <Button layoutX="328.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#0e185f">

@@ -1,6 +1,5 @@
 package app;
 
-import Entities.Usuarios.Usuario;
 import Util.LogHandler;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Query;
@@ -23,7 +22,7 @@ public class EntityManager {
      * @param id id de BD
      * @return Entity
      */
-    private Entity find(Class<?> classname, int id) {
+    public Entity find(Class<?> classname, int id) {
         Entity entity = null;
 
         try {
@@ -43,11 +42,11 @@ public class EntityManager {
      *
      * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
      * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
-     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse :<<int>> empezando por 0 y en orden
+     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
      * @return List<Entity>
      */
-    private List<Entity> select(Class<?> classname, String criteria, Object[]... parameters) {
-        List<Entity> entities = null;
+    public List<Object> select(Class<?> classname, String criteria, Object[]... parameters) {
+        List<Object> entities = null;
 
         try {
             Session session = App.db.getSessionFactory().openSession();
@@ -76,10 +75,9 @@ public class EntityManager {
      *
      * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
      * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
-     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse :<<int>> empezando por 0 y en orden
      * @return List<Entity>
      */
-    private Entity selectOne(Class<?> classname, String criteria, Object[]... parameters) {
+    public Entity selectOne(Class<?> classname, String criteria, Object[]... parameters) {
         Entity entity = null;
 
         try {
@@ -109,7 +107,7 @@ public class EntityManager {
      * @param entity Entidad de Hibernate
      * @return Entity
      */
-    private Entity save(Entity entity) {
+    public Entity save(Entity entity) {
 
         try {
             Session session = App.db.getSessionFactory().openSession();

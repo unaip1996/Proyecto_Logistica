@@ -12,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #0E185F;" BorderPane.alignment="CENTER">
          <children>
@@ -66,7 +65,7 @@
                   <Image url="@../../../../img/Password.png" />
                </image>
             </ImageView>
-            <Button layoutX="328.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#0e185f">
+            <Button layoutX="289.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#0e185f">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

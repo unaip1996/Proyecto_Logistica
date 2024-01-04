@@ -3,6 +3,7 @@ import Entities.Usuarios.Cliente;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Direccion")
 public class Direccion {
 
     @Id

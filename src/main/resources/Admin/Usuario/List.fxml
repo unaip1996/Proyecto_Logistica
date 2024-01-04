@@ -11,15 +11,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.UsuarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.Usuario.ListController">
    <top>
       <AnchorPane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #0e185f;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="647.0" layoutY="21.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#0e185f">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
             <Label layoutX="123.0" layoutY="20.0" text="Gestión Logística" textFill="WHITE">
                <font>
                   <Font size="24.0" />
@@ -27,7 +22,7 @@
             </Label>
             <ImageView fitHeight="72.0" fitWidth="64.0" layoutX="46.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/logo.png" />
+                  <Image url="@../../../../../img/logo.png" />
                </image>
             </ImageView>
          </children>
@@ -36,20 +31,23 @@
    <left>
       <AnchorPane prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="260.0" layoutY="37.0" text="Gestión Logística" textFill="#0e185f">
+            <Label layoutX="309.0" layoutY="38.0" text="Clientes" textFill="#0e185f">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView layoutX="82.0" layoutY="95.0" prefHeight="233.0" prefWidth="537.0" fx:id="datos">
+            <TableView fx:id="datos" layoutX="82.0" layoutY="95.0" prefHeight="233.0" prefWidth="537.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Nick" fx:id="nick" />
-                 <TableColumn prefWidth="75.0" text="Teléfono" fx:id="numberphone" />
-                 <TableColumn prefWidth="75.0" text="Mail" fx:id="mail" />
-                 <TableColumn prefWidth="75.0" text="Es Admin" fx:id="type_user" />
+                <TableColumn fx:id="nick" prefWidth="75.0" text="Nick" />
+                 <TableColumn fx:id="numberphone" prefWidth="75.0" text="Teléfono" />
+                 <TableColumn fx:id="mail" prefWidth="75.0" text="Mail" />
+                 <TableColumn fx:id="actions" prefWidth="75.0" text="Acciones" />
               </columns>
             </TableView>
             <Pagination layoutX="82.0" layoutY="346.0" prefHeight="53.0" prefWidth="538.0" />
+            <Button fx:id="newCliente" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nuevo Cliente"/>
+
+<!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->
          </children>
       </AnchorPane>
    </left>

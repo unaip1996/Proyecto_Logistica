@@ -3,8 +3,7 @@ package Entities.operaciones;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-import java.util.Date;
+import jakarta.persistence.Table;
 
 /**
  * @author Unai
@@ -14,6 +13,7 @@ import java.util.Date;
  */
 
 @Entity
+@Table(name = "Tarifa")
 public class Tarifa {
 
     @Id

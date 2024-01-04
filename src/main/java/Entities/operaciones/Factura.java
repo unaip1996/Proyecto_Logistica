@@ -6,6 +6,7 @@ import Entities.Usuarios.Cliente;
 import java.util.Date;
 
 @Entity
+@Table(name = "Factura")
 public class Factura { // Definición de la clase Factura
     // Campos privados de la clase Factura
     private String numeroFactura;// Número de factura

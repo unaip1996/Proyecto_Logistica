@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  */
 
 @Entity
+@Table(name = "Ruta")
 public abstract class Ruta {
 
     @Id

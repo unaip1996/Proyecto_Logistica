@@ -2,6 +2,7 @@ package app;
 
 import Util.LogHandler;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.Table;
 import org.hibernate.HibernateException;
@@ -45,7 +46,7 @@ public class EntityManager {
      * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
      * @return List<Entity>
      */
-    public List<Object> select(Class<?> classname, String criteria, Object[]... parameters) {
+    public List<Object> select_old(Class<?> classname, String criteria, Object[]... parameters) {
         List<Object> entities = null;
 
         try {
@@ -77,7 +78,7 @@ public class EntityManager {
      * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
      * @return List<Entity>
      */
-    public Entity selectOne(Class<?> classname, String criteria, Object[]... parameters) {
+    public Entity selectOne_old(Class<?> classname, String criteria, Object[]... parameters) {
         Entity entity = null;
 
         try {
@@ -102,12 +103,84 @@ public class EntityManager {
     }
 
     /**
+     * Devuelve una lista de objetos de entidad que cumplan los requerimientos de la consulta
+     *
+     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
+     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
+     * @return List<Entity>
+     */
+    public List<Object> select(Class<?> classname, String criteria, Object[]... parameters) {
+        List<Object> entities = null;
+
+        try {
+            Session session = App.db.getSessionFactory().openSession();
+
+            session.beginTransaction();
+
+            Table table = classname.getAnnotation(Table.class);
+            String tableName = table.name();
+            Query query = session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname);
+
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i, parameters[i]);
+            }
+
+            entities = query.getResultList();
+
+            session.close();
+
+        } catch (HibernateException e) {
+            LogHandler.log(Level.SEVERE, e.getMessage());
+        }
+
+        return entities;
+    }
+
+
+    /**
+     * Devuelve un objeto de entidad que cumpla los requerimientos de la consulta
+     *
+     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
+     * @return List<Entity>
+     */
+    public Object selectOne(Class<?> classname, String criteria, String[] parameters) {
+        Object entity = null;
+
+        try {
+            Session session = App.db.getSessionFactory().openSession();
+
+            Table table = classname.getAnnotation(Table.class);
+            String tableName = table.name();
+            Query query = (Query) session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname).getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i+1, parameters[i]);
+            }
+
+            try {
+                entity = query.getSingleResult();
+            } catch (NoResultException e) {
+                entity = false;
+            }
+
+        } catch (HibernateException e) {
+            LogHandler.log(Level.SEVERE, e.getMessage());
+        }
+
+        return entity;
+    }
+
+    /**
      * Guardar entidad, sirve para crear y actualizar
      *
      * @param entity Entidad de Hibernate
      * @return Entity
      */
-    public Entity save(Entity entity) {
+    public Object save(Object entity) {
 
         try {
             Session session = App.db.getSessionFactory().openSession();
@@ -129,7 +202,7 @@ public class EntityManager {
      * @param entity Entidad de Hibernate
      * @return boolean
      */
-    private boolean remove(Entity entity) {
+    private boolean remove(Object entity) {
         boolean removed = false;
 
 

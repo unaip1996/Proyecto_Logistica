@@ -3,6 +3,7 @@ package Entities.operaciones;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @author Unai
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
  */
 
 @Entity
+@Table(name = "Coordenada")
 public class Coordenada {
 
     @Id

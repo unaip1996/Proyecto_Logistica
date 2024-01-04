@@ -9,40 +9,46 @@ import Entities.operaciones.Direccion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 @Entity
-public abstract class Usuario implements Autentificacion {
+@Table(name = "Usuario")
+public abstract class Usuario implements Autentificacion, Serializable {
 
     @Id
     @GeneratedValue
-    private Long id;
-
-    public Usuario() {
-
-    }
+    private int id;
      
      protected String nick;
      protected String password;
-     protected String type_user;
+     protected String passwordSalt;
+     protected int type_user;
      protected String numberphone;
      protected String mail;
+     protected LocalDateTime ultimoLogin;
      private ArrayList<Direccion> direccion;
 
      // Aparte de los campos exigidos en el enunciado se añadiran dos constantes, que se usarán a lo largo de proyecto
      // Para identificar el tipo de usuario
-     protected static final String ADMINTYPE = "1";
-     protected static final String USERTYPE = "0";
+     protected static final int ADMINTYPE = 1;
+     protected static final int USERTYPE = 0;
      //Instanciaremos con Strings ya que, aunque hayan campos que sean números, por el momento no se tiene pensando hacer operaciónes
      //Con estos campos.
      protected List<String> userinfo;
 
-     //Dejaremos definido el constructor de usuario de tal manerda de que solo haya que usar "super" en las clases hijas
-     public Usuario(String nick, String password, String numberphone, String mail, String type_user){
+    public Usuario() {
+
+    }
+
+     //Dejaremos definido el constructor de usuario de tal manera de que solo haya que usar "super" en las clases hijas
+     public Usuario(String nick, String password, String numberphone, String mail, int type_user){
           this.nick = nick;
           this.password = password;
           this.type_user = type_user;
@@ -54,11 +60,34 @@ public abstract class Usuario implements Autentificacion {
           userinfo = new ArrayList<>(Arrays.asList(this.nick, this.password, this.numberphone, this.mail));          
      }
 
-    public void setId(Long id) {
+    /**
+     * Constructor para Hibernate
+     *
+     * @param id
+     * @param nick
+     * @param password
+     * @param passwordSalt
+     * @param type_user
+     * @param numberphone
+     * @param mail
+     * @param ultimoLogin
+     */
+    public Usuario(int id, String nick, String password, String passwordSalt, int type_user, String numberphone, String mail, LocalDateTime ultimoLogin) {
+        this.id = id;
+        this.nick = nick;
+        this.password = password;
+        this.passwordSalt = passwordSalt;
+        this.type_user = type_user;
+        this.numberphone = numberphone;
+        this.mail = mail;
+        this.ultimoLogin = ultimoLogin;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -106,6 +135,70 @@ public abstract class Usuario implements Autentificacion {
 
     public void setDireccion(ArrayList<Direccion> direccion) {
         this.direccion = direccion;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
+    }
+
+    public int getType_user() {
+        return type_user;
+    }
+
+    public void setType_user(int type_user) {
+        this.type_user = type_user;
+    }
+
+    public String getNumberphone() {
+        return numberphone;
+    }
+
+    public void setNumberphone(String numberphone) {
+        this.numberphone = numberphone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public LocalDateTime getUltimoLogin() {
+        return ultimoLogin;
+    }
+
+    public void setUltimoLogin(LocalDateTime ultimoLogin) {
+        this.ultimoLogin = ultimoLogin;
+    }
+
+    public List<String> getUserinfo() {
+        return userinfo;
+    }
+
+    public void setUserinfo(List<String> userinfo) {
+        this.userinfo = userinfo;
     }
 }
 

@@ -10,6 +10,7 @@ import jakarta.persistence.*;
  */
 
 @Entity
+@Table(name = "Empaquetado")
 public class Empaquetado {
 
     @Id

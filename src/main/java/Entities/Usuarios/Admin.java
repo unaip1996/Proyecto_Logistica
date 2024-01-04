@@ -30,7 +30,6 @@ public class Admin extends Usuario {
     };
     @Override
     List<String> getUserInfo(){
-        userinfo.add(ADMINTYPE);
         return userinfo;
     }
     /*Métodos Gestion de usuarios
@@ -93,32 +92,6 @@ public class Admin extends Usuario {
         if (password == null || password.length() < 4 || password.length() > 8) {
             throw new IllegalArgumentException("Error: El campo 'password' debe tener entre 4 y 8 caracteres.");
         }
-    }
-    //getters
-    private String getNick(){
-        return this.nick;
-    }
-    private String getPassword(){
-        return this.password;
-    }
-    private String getNumberphone(){
-        return this.numberphone;
-    }
-    private String getMail(){
-        return this.mail;
-    }
-    //setters
-    private void setNick(String elem){
-        this.nick = elem;
-    }
-    private void setPassword(String elem){
-        this.password = elem;
-    }
-    private void setNumberphone(String elem){
-        this.numberphone= elem;
-    }
-    private void setMail(String elem){
-        this.mail= elem;
     }
     
 

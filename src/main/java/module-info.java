@@ -7,9 +7,11 @@ module app {
     requires org.hibernate.orm.core;
     requires jdk.jfr;
     requires jakarta.persistence;
+    requires java.persistence;
     requires java.naming;
 
     opens app to javafx.fxml;
     exports app;
-    exports app.ViewControllers;
+    exports Entities.Usuarios;
+    exports app.ViewControllers.Admin.Usuario;
 }

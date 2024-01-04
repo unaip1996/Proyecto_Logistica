@@ -4,7 +4,11 @@ package Entities.Usuarios;
  * 
  * Clase abstracta Usuario
  */
+import jakarta.persistence.Table;
+
+import java.time.LocalDateTime;
 import java.util.List;
+@Table(name = "Usuario")
 public class Cliente extends Usuario{
 
     /**
@@ -18,37 +22,28 @@ public class Cliente extends Usuario{
     public Cliente(String nick, String password, String numberphone, String mail) {
         super(nick, password, numberphone, mail, USERTYPE);
     }
+
+    /**
+     * Constructor para Hibernate
+     *
+     * @param id
+     * @param nick
+     * @param password
+     * @param passwordSalt
+     * @param type_user
+     * @param numberphone
+     * @param mail
+     * @param ultimoLogin
+     */
+    public Cliente(int id, String nick, String password, String passwordSalt, int type_user, String numberphone, String mail, LocalDateTime ultimoLogin) {
+        super(id, nick, password, passwordSalt, type_user, numberphone, mail, ultimoLogin);
+    }
+
     @Override
     List<String> getUserInfo(){
         return userinfo;
     }
     @Override
     void showhistorial(){
-    }
-    //getters
-    private String getNick(){
-        return this.nick;
-    }
-    private String getPassword(){
-        return this.password;
-    }
-    private String getNumberphone(){
-        return this.numberphone;
-    }
-    private String getMail(){
-        return this.mail;
-    }
-    //setters
-    private void setNick(String elem){
-        this.nick = elem;
-    }
-    private void setPassword(String elem){
-        this.password = elem;
-    }
-    private void setNumberphone(String elem){
-        this.numberphone= elem;
-    }
-    private void setMail(String elem){
-        this.mail= elem;
     }
 }

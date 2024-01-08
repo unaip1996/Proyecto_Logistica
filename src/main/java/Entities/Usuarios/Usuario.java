@@ -5,10 +5,11 @@ package Entities.Usuarios;
  * 
  * Clase abstracta Usuario
  */
+
 import Entities.operaciones.Direccion;
+import Util.SerializableEntity;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Usuario")
-public class Usuario implements Autentificacion, Serializable {
+public class Usuario implements Autentificacion, SerializableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,8 +35,8 @@ public class Usuario implements Autentificacion, Serializable {
 
      // Aparte de los campos exigidos en el enunciado se añadiran dos constantes, que se usarán a lo largo de proyecto
      // Para identificar el tipo de usuario
-     protected static final int ADMINTYPE = 1;
-     protected static final int USERTYPE = 0;
+     public static final int ADMINTYPE = 1;
+    public static final int USERTYPE = 0;
      //Instanciaremos con Strings ya que, aunque hayan campos que sean números, por el momento no se tiene pensando hacer operaciónes
      //Con estos campos.
      protected List<String> userinfo;
@@ -78,10 +79,6 @@ public class Usuario implements Autentificacion, Serializable {
         this.numberphone = numberphone;
         this.mail = mail;
         this.ultimoLogin = ultimoLogin;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {

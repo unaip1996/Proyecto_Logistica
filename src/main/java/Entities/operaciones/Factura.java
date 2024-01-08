@@ -1,5 +1,6 @@
 package Entities.operaciones;
 
+import Util.SerializableEntity;
 import jakarta.persistence.*;
 import Entities.Usuarios.Cliente;
 
@@ -7,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Factura")
-public class Factura { // Definición de la clase Factura
+public class Factura implements SerializableEntity { // Definición de la clase Factura
     // Campos privados de la clase Factura
     private String numeroFactura;// Número de factura
     private Date fecha;// Fecha de la factura
@@ -19,7 +20,7 @@ public class Factura { // Definición de la clase Factura
     private double montoTotal;// Monto total de la factura
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     public Factura() {
 
@@ -51,11 +52,8 @@ public class Factura { // Definición de la clase Factura
         System.out.println("Monto Total: $" + montoTotal);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

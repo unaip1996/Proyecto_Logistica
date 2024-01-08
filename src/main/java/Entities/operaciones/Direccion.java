@@ -1,16 +1,16 @@
 package Entities.operaciones;
-import Entities.Usuarios.Cliente;
-import jakarta.persistence.*;
 
-import java.io.Serializable;
+import Entities.Usuarios.Cliente;
+import Util.SerializableEntity;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Direccion")
-public class Direccion implements Serializable {
+public class Direccion implements SerializableEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
     private String pais;
     private String provincia;
     private String ciudad;
@@ -25,11 +25,8 @@ public class Direccion implements Serializable {
     private Cliente cliente;
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

@@ -1,5 +1,6 @@
 package Entities.operaciones;
 
+import Util.SerializableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,11 +14,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Coordenada")
-public class Coordenada {
+public class Coordenada implements SerializableEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
     private double latitud;
     private double longitud;
 
@@ -39,11 +40,8 @@ public class Coordenada {
 
     // getters / setters
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

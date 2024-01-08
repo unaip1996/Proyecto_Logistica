@@ -36,7 +36,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="datos" layoutX="82.0" layoutY="95.0" prefHeight="233.0" prefWidth="537.0">
+            <TableView fx:id="datos" layoutX="82.0" layoutY="95.0" prefHeight="243.0" prefWidth="537.0">
               <columns>
                 <TableColumn fx:id="nick" prefWidth="75.0" text="Nick" />
                  <TableColumn fx:id="numberphone" prefWidth="75.0" text="Teléfono" />
@@ -45,8 +45,9 @@
                  <TableColumn fx:id="actions" prefWidth="75.0" text="Acciones" />
               </columns>
             </TableView>
-            <Pagination layoutX="82.0" layoutY="346.0" prefHeight="53.0" prefWidth="538.0" />
-            <Button fx:id="newUsuario" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nuevo Usuario"/>
+            <Pagination fx:id="pagination" layoutX="82.0" layoutY="346.0" prefHeight="53.0" prefWidth="538.0" />
+            <Button fx:id="newItem" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nuevo Usuario" />
+            <Button fx:id="deleteItems" layoutX="554.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Eliminar" />
 
 <!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->
          </children>

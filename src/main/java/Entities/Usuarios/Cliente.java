@@ -8,12 +8,11 @@ package Entities.Usuarios;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Usuario")
-public class Cliente extends Usuario implements Serializable {
+public class Cliente extends Usuario {
 
     /**
      * Constructor que toma nombre y contraseña como parámetros

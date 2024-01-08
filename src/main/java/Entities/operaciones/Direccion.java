@@ -2,9 +2,11 @@ package Entities.operaciones;
 import Entities.Usuarios.Cliente;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "Direccion")
-public class Direccion {
+public class Direccion implements Serializable {
 
     @Id
     @GeneratedValue

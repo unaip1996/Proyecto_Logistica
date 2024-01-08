@@ -1,8 +1,7 @@
 package app;
 
 import Util.LogHandler;
-import jdk.jfr.Event;
-import org.hibernate.*;
+import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -22,10 +21,10 @@ public class DB {
         try {
             sessionFactory =
                     new MetadataSources(registry)
-                            .addAnnotatedClass(Event.class)
-//                            .addFile("hibernate.properties")
+//                            .addFile("conf/hibernate.properties")
                             .buildMetadata()
                             .buildSessionFactory();
+//            sessionFactory = new Configuration().addAnnotatedClass(Usuario.class).configure().buildSessionFactory();
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we

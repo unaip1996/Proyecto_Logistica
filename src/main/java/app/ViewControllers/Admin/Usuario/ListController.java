@@ -1,7 +1,8 @@
 package app.ViewControllers.Admin.Usuario;
 
-import Entities.Usuarios.Cliente;
+import Entities.Usuarios.Usuario;
 import app.EntityManager;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,21 +40,24 @@ public class ListController implements Initializable {
     public AnchorPane center;
 
     @FXML
-    public TableView<Cliente> datos;
+    public TableView<Usuario> datos;
     @FXML
-    public TableColumn<Cliente, String> nick;
+    public TableColumn<Usuario, String> nick;
     @FXML
-    public TableColumn<Cliente, String> numberphone;
+    public TableColumn<Usuario, String> numberphone;
     @FXML
-    public TableColumn<Cliente, String> mail;
+    public TableColumn<Usuario, String> mail;
+    
     @FXML
-    public TableColumn<Cliente, Boolean> actions;
+    public TableColumn<Usuario, String> type_user;
     @FXML
-    public Button newCliente;
+    public TableColumn<Usuario, Boolean> actions;
+    @FXML
+    public Button newUsuario;
 
 
     // add your data here from any source
-    private ObservableList<Cliente> usuarios;
+    private ObservableList<Usuario> usuarios;
 
     public void exit(){
 
@@ -64,32 +68,42 @@ public class ListController implements Initializable {
 
         usuarios = FXCollections.observableArrayList();
 
-        nick.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nick"));
-        numberphone.setCellValueFactory(new PropertyValueFactory<Cliente, String>("numberphone"));
-        mail.setCellValueFactory(new PropertyValueFactory<Cliente, String>("mail"));
+        nick.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nick"));
+        numberphone.setCellValueFactory(new PropertyValueFactory<Usuario, String>("numberphone"));
+        mail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("mail"));
+
+        type_user.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Usuario, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Usuario, String> p) {
+                        int type = p.getValue().getType_user();
+                        return new ReadOnlyStringWrapper(type == 1 ? "Administrador" : "Cliente");
+                    }
+                }
+        );
 
         actions.setSortable(false);
         actions.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Cliente, Boolean>,
+                new Callback<TableColumn.CellDataFeatures<Usuario, Boolean>,
                         ObservableValue<Boolean>>() {
 
                     @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Cliente, Boolean> p) {
+                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Usuario, Boolean> p) {
                         return new SimpleBooleanProperty(p.getValue() != null);
                     }
                 });
 
         actions.setCellFactory(
-                new Callback<TableColumn<Cliente, Boolean>, TableCell<Cliente, Boolean>>() {
+                new Callback<TableColumn<Usuario, Boolean>, TableCell<Usuario, Boolean>>() {
 
                     @Override
-                    public TableCell<Cliente, Boolean> call(TableColumn<Cliente, Boolean> p) {
+                    public TableCell<Usuario, Boolean> call(TableColumn<Usuario, Boolean> p) {
                         return new EditCell();
                     }
 
                 });
 
-        newCliente.setOnAction(new EventHandler<ActionEvent>() {
+        newUsuario.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -109,16 +123,16 @@ public class ListController implements Initializable {
 
         EntityManager em = new EntityManager();
 
-        List<Object> userList = em.select(Cliente.class, "");
+        List<Object> userList = em.select(Usuario.class, "");
 
         for(Object user : userList) {
-            usuarios.add((Cliente) user);
+            usuarios.add((Usuario) user);
         }
 
         datos.setItems(usuarios);
     }
 
-    private class EditCell extends TableCell<Cliente, Boolean> {
+    private class EditCell extends TableCell<Usuario, Boolean> {
         Button cellButton = new Button("Editar");
 //        Button cellButton = new Button("Editar").setGraphic(FontAwesome.Glyph.PENCIL);
 
@@ -130,9 +144,9 @@ public class ListController implements Initializable {
                 @Override
                 public void handle(ActionEvent t) {
                     int selectedIndex = getTableRow().getIndex();
-                    Cliente cliente = (Cliente) datos.getItems().get(selectedIndex);
+                    Usuario usuario = (Usuario) datos.getItems().get(selectedIndex);
 
-                    System.out.println(cliente.getNick());
+                    System.out.println(usuario.getNick());
                 }
             });
         }

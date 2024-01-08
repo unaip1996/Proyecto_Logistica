@@ -13,5 +13,6 @@ module app {
     opens app to javafx.fxml;
     exports app;
     exports Entities.Usuarios;
+    exports app.ViewControllers.Admin;
     exports app.ViewControllers.Admin.Usuario;
 }

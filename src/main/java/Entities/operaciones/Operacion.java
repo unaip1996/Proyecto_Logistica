@@ -1,5 +1,6 @@
 package Entities.operaciones;
 
+import Util.SerializableEntity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "Operacion")
-public class Operacion {
+public class Operacion implements SerializableEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     // Definimos rutas como un ArrayList, ya que puede haber mas de 1 ruta para una operación
 
@@ -50,11 +51,8 @@ public class Operacion {
 
     // getters / setters
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

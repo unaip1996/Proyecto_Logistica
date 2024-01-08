@@ -1,5 +1,6 @@
 package Entities.operaciones;
 
+import Util.SerializableEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Ruta")
-public abstract class Ruta {
+public abstract class Ruta implements SerializableEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     //Constantes internas de la clase para saber el tipo de ruta que es
     final static byte TIPO_AEREA = 0;
@@ -54,11 +55,8 @@ public abstract class Ruta {
 
     // getters / setters
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

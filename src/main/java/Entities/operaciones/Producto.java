@@ -1,6 +1,7 @@
 package Entities.operaciones;
 
 
+import Util.SerializableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,12 +9,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Producto")
-public class Producto {
+public class Producto implements SerializableEntity {
 
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     // Campos privados que representan las características del producto
     private String nombre; // Nombre del producto
@@ -38,11 +39,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

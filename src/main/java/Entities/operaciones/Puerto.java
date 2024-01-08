@@ -1,6 +1,7 @@
 package Entities.operaciones;
 
 
+import Util.SerializableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,11 +15,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Puerto")
-public class Puerto {
+public class Puerto implements SerializableEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
     private String nombre;
 
     //Constructores
@@ -32,11 +33,7 @@ public class Puerto {
 
     // getters / setters
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

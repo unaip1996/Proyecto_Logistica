@@ -20,6 +20,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="Proyecto_Logistica" />
           <factory-entry name="QuickStart" />
         </datasource-mapping>
         <naming-strategy-map />

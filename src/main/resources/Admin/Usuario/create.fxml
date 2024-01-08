@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -30,22 +31,25 @@
    <left>
       <AnchorPane fx:id="center" prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="error_label" layoutX="276.0" layoutY="38.0" text="Nuevo Cliente" textFill="#0e185f">
+            <Label layoutX="276.0" layoutY="38.0" text="Nuevo Cliente" textFill="#0e185f">
 ">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <Button id="back_button" fx:id="back_button" layoutX="240.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancelar" textFill="#800c0c" />
-            <Label layoutX="91.0" layoutY="114.0" text="Nick" />
+            <Label layoutX="91.0" layoutY="114.0" text="Nick     *" />
             <TextField id="nick_input" fx:id="nick_input" layoutX="91.0" layoutY="152.0" />
-            <Label layoutX="276.0" layoutY="114.0" text="Password" />
+            <Label layoutX="276.0" layoutY="114.0" text="Password     *" />
             <PasswordField id="password_input" fx:id="password_input" layoutX="277.0" layoutY="152.0" />
-            <Label layoutX="463.0" layoutY="114.0" text="Teléfono" />
+            <Label layoutX="463.0" layoutY="114.0" text="Teléfono     *" />
             <TextField id="telefono_input" fx:id="telefono_input" layoutX="463.0" layoutY="152.0" />
-            <Label layoutX="92.0" layoutY="213.0" text="Mail" />
+            <Label layoutX="92.0" layoutY="213.0" text="Mail     *" />
             <TextField id="mail_input" fx:id="mail_input" layoutX="91.0" layoutY="243.0" />
             <Button fx:id="save_button" layoutX="391.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Guardar" />
+            <Label fx:id="error_label" layoutX="92.0" layoutY="281.0" textFill="#800c0c" />
+            <Label layoutX="278.0" layoutY="216.0" text="Es administrador" />
+            <CheckBox fx:id="es_admin" layoutX="278.0" layoutY="247.0" mnemonicParsing="false" />
 <!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->
          </children>
       </AnchorPane>

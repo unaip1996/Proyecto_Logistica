@@ -4,12 +4,16 @@ package Entities.Usuarios;
  * 
  * Clase abstracta Usuario
  */
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
+
+@Entity
 @Table(name = "Usuario")
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable {
 
     /**
      * Constructor que toma nombre y contraseña como parámetros
@@ -39,11 +43,7 @@ public class Cliente extends Usuario{
         super(id, nick, password, passwordSalt, type_user, numberphone, mail, ultimoLogin);
     }
 
-    @Override
-    List<String> getUserInfo(){
-        return userinfo;
-    }
-    @Override
-    void showhistorial(){
+    public Cliente() {
+
     }
 }

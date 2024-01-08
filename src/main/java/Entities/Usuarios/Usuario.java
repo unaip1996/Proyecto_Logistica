@@ -6,10 +6,7 @@ package Entities.Usuarios;
  * Clase abstracta Usuario
  */
 import Entities.operaciones.Direccion;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -20,10 +17,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "Usuario")
-public abstract class Usuario implements Autentificacion, Serializable {
+public class Usuario implements Autentificacion, Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
      
      protected String nick;
@@ -91,10 +88,6 @@ public abstract class Usuario implements Autentificacion, Serializable {
         return id;
     }
 
-
-    //Este método servirá para mostrar toda la información de un usuario
-     abstract List<String> getUserInfo();
-
      /**
       * Método para obtener el tipo de usuario (admin o promedio)
       *
@@ -102,12 +95,6 @@ public abstract class Usuario implements Autentificacion, Serializable {
      public void getUserType(){
 
      };
-
-     /**
-      * Método para mostrar información del usuario (Historial de operaciones/facturación)
-      *
-      */
-     abstract void showhistorial();
 
 
      

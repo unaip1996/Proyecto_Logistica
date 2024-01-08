@@ -5,8 +5,6 @@ package Entities.Usuarios;
  * Clase abstracta Usuario
  */
 
-import java.util.List;
-
 public class Admin extends Usuario {
     /**
      * Constructor que toma nombre y contraseña como parámetros
@@ -18,19 +16,6 @@ public class Admin extends Usuario {
      */
     public Admin(String nick, String password, String numberphone, String mail) {
         super(nick, password, numberphone, mail, ADMINTYPE);
-    }
-
-    /**
-     * Método para mostrar información del usuario (Historial de operaciones/facturación)
-     */
-    @Override
-    void showhistorial(){
-        //Se usará la lógica necesaria paar acceder a la base de datos y mostrar el historial de operaciones/facturas
-        
-    };
-    @Override
-    List<String> getUserInfo(){
-        return userinfo;
     }
     /*Métodos Gestion de usuarios
      * agregar usuarios: añade usuario a BD

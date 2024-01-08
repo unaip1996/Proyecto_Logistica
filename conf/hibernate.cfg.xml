@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration">
+
+<hibernate-configuration>
+
+    <!-- a SessionFactory instance listed as /jndi/name -->
+    <session-factory
+            name="java:hibernate/SessionFactory">
+
+        <property name="hibernate.archive.autodetection">class, hbm</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="connection.url">jdbc:mysql://logistica0.cs4kmk27dc0y.eu-north-1.rds.amazonaws.com:3306/logistica_app</property>
+        <property name="connection.username">admin</property>
+        <property name="connection.password">AUwe52qkBz24WoKB9iet</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+        <mapping class="Entities.Usuarios.Usuario" />
+        <mapping class="Entities.Usuarios.Cliente" />
+        <mapping class="Entities.Usuarios.Admin" />
+        <mapping class="Entities.operaciones.Direccion" />
+
+
+    </session-factory>
+
+</hibernate-configuration>

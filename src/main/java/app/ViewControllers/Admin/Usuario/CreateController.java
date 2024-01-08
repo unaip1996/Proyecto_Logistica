@@ -88,6 +88,7 @@ public class CreateController implements Initializable {
                 }
             }
         });
+
     }
 
     private boolean userExists() {
@@ -97,7 +98,7 @@ public class CreateController implements Initializable {
         String mail = mail_input.getText();
 
         String[] parameters = {nick, mail};
-        Cliente cliente = (Cliente)em.selectOne(Cliente.class, "WHERE nick = ?1 OR mail = ?2", parameters);
+        Cliente cliente = (Cliente)em.selectOne(Cliente.class, "WHERE nick = ?0 OR mail = ?1", parameters);
 
         exists = cliente != null;
 

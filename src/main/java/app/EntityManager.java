@@ -1,13 +1,21 @@
 package app;
 
 import Util.LogHandler;
+import app.ViewControllers.Cliente.BuscarController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.Table;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -153,19 +161,16 @@ public class EntityManager {
 
             Table table = classname.getAnnotation(Table.class);
             String tableName = table.name();
-            Query query = (Query) session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname).getResultStream()
-                    .findFirst()
-                    .orElse(null);
+            Query query = (Query) session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname);
 
             for (int i = 0; i < parameters.length; i++) {
+                System.out.println(parameters[i]);
                 query.setParameter(i+1, parameters[i]);
             }
 
-            try {
-                entity = query.getSingleResult();
-            } catch (NoResultException e) {
-                entity = false;
-            }
+            entity = query.getResultStream()
+                    .findFirst()
+                    .orElse(null);
 
         } catch (HibernateException e) {
             LogHandler.log(Level.SEVERE, e.getMessage());
@@ -220,4 +225,6 @@ public class EntityManager {
 
         return removed;
     }
+
+
 }

@@ -1,21 +1,12 @@
 package app;
 
 import Util.LogHandler;
-import app.ViewControllers.Cliente.BuscarController;
 import jakarta.persistence.Entity;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.Table;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -54,70 +45,6 @@ public class EntityManager {
      * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
      * @return List<Entity>
      */
-    public List<Object> select_old(Class<?> classname, String criteria, Object[]... parameters) {
-        List<Object> entities = null;
-
-        try {
-            Session session = App.db.getSessionFactory().openSession();
-
-            Table table = classname.getAnnotation(Table.class);
-            String tableName = table.name();
-            String hql = "FROM "+tableName+" d " + criteria;
-            Query query = session.createQuery(hql);
-
-            for (int i = 0; i < parameters.length; i++) {
-                query.setParameter(i, parameters[i]);
-            }
-
-            entities = query.getResultList();
-
-        } catch (HibernateException e) {
-            LogHandler.log(Level.SEVERE, e.getMessage());
-        }
-
-        return entities;
-    }
-
-
-    /**
-     * Devuelve un objeto de entidad que cumpla los requerimientos de la consulta
-     *
-     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
-     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
-     * @return List<Entity>
-     */
-    public Entity selectOne_old(Class<?> classname, String criteria, Object[]... parameters) {
-        Entity entity = null;
-
-        try {
-            Session session = App.db.getSessionFactory().openSession();
-
-            Table table = classname.getAnnotation(Table.class);
-            String tableName = table.name();
-            String hql = "FROM "+tableName+" d " + criteria;
-            Query query = session.createQuery(hql);
-
-            for (int i = 0; i < parameters.length; i++) {
-                query.setParameter(i, parameters[i]);
-            }
-
-            entity = (Entity) query.getSingleResult();
-
-        } catch (HibernateException e) {
-            LogHandler.log(Level.SEVERE, e.getMessage());
-        }
-
-        return entity;
-    }
-
-    /**
-     * Devuelve una lista de objetos de entidad que cumplan los requerimientos de la consulta
-     *
-     * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
-     * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
-     * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
-     * @return List<Entity>
-     */
     public List<Object> select(Class<?> classname, String criteria, Object[]... parameters) {
         List<Object> entities = null;
 
@@ -131,7 +58,7 @@ public class EntityManager {
             Query query = session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname);
 
             for (int i = 0; i < parameters.length; i++) {
-                query.setParameter(i, parameters[i]);
+                query.setParameter(i+1, parameters[i]);
             }
 
             entities = query.getResultList();
@@ -164,7 +91,6 @@ public class EntityManager {
             Query query = (Query) session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname);
 
             for (int i = 0; i < parameters.length; i++) {
-                System.out.println(parameters[i]);
                 query.setParameter(i+1, parameters[i]);
             }
 
@@ -191,7 +117,7 @@ public class EntityManager {
             Session session = App.db.getSessionFactory().openSession();
             session.beginTransaction();
 
-            session.persist(entity);
+            session.save(entity.getClass().getName(), entity);
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
@@ -207,7 +133,7 @@ public class EntityManager {
      * @param entity Entidad de Hibernate
      * @return boolean
      */
-    private boolean remove(Object entity) {
+    public boolean remove(Object entity) {
         boolean removed = false;
 
 
@@ -225,6 +151,28 @@ public class EntityManager {
 
         return removed;
     }
+    public boolean executeNativeQuery(String sqlQuery, String[] parameters) {
+        boolean executed = false;
 
 
+        try {
+            Session session = App.db.getSessionFactory().openSession();
+
+            session.beginTransaction();
+
+            Query query = (Query) session.createNativeQuery(sqlQuery);
+
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i+1, parameters[i]);
+            }
+
+            query.executeUpdate();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            LogHandler.log(Level.SEVERE, e.getMessage());
+        }
+
+        return executed;
+    }
 }

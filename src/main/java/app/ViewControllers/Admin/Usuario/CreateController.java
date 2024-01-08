@@ -1,6 +1,6 @@
 package app.ViewControllers.Admin.Usuario;
 
-import Entities.Usuarios.Cliente;
+import Entities.Usuarios.Usuario;
 import app.EntityManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -37,6 +34,8 @@ public class CreateController implements Initializable {
     public TextField telefono_input;
     @FXML
     public TextField mail_input;
+    @FXML
+    public CheckBox es_admin;
 
     @FXML
     public Label error_label;
@@ -70,25 +69,33 @@ public class CreateController implements Initializable {
                 String password = password_input.getText();
                 String mail = mail_input.getText();
                 String telefono = telefono_input.getText();
+                String type_user = es_admin.isSelected() ? "1" : "0";
 
                 String[] fields = {nick, password, mail, telefono};
+
+                save_button.setDisable(true);
 
                 if (validateFields(fields)) {
                     if (userExists()) {
                         error_label.setText("Nick o email existentes");
                     } else {
-                        Cliente cliente = new Cliente(nick, password, mail, telefono);
+//                        Usuario usuario = new Usuario(nick, password, mail, telefono);
+//
+//                        em.save(usuario);
 
-                        em.save(cliente);
+                        em.executeNativeQuery("INSERT INTO Usuario(nick, password, mail, telefono, tipo) VALUES(?1,?2,?3,?4,?5)", new String[]{nick, password, mail, telefono, type_user});
 
                         back(event);
                     }
                 } else {
                     error_label.setText("Por favor, rellena los campos obligatorios");
                 }
+
+
+
+                save_button.setDisable(false);
             }
         });
-
     }
 
     private boolean userExists() {
@@ -98,9 +105,9 @@ public class CreateController implements Initializable {
         String mail = mail_input.getText();
 
         String[] parameters = {nick, mail};
-        Cliente cliente = (Cliente)em.selectOne(Cliente.class, "WHERE nick = ?0 OR mail = ?1", parameters);
+        Usuario usuario = (Usuario)em.selectOne(Usuario.class, "WHERE nick = ?1 OR mail = ?2", parameters);
 
-        exists = cliente != null;
+        exists = usuario != null;
 
         return exists;
     }

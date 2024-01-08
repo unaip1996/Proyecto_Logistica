@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.LoginController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #0E185F;" BorderPane.alignment="CENTER">
          <children>
@@ -37,9 +37,9 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="510.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtuname" layoutX="125.0" layoutY="238.0" promptText="User Name" style="-fx-background-color: trasparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="txtpass" layoutX="125.0" layoutY="298.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="btnok" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="374.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #0E185F;" text="Iniciar Seccion" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
+            <TextField fx:id="nickname" layoutX="125.0" layoutY="238.0" promptText="User Name" style="-fx-background-color: trasparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="password" layoutX="125.0" layoutY="298.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #0E185F;" text="Iniciar Seccion" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -65,11 +65,6 @@
                   <Image url="@../../../../img/Password.png" />
                </image>
             </ImageView>
-            <Button layoutX="289.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#0e185f">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </right>

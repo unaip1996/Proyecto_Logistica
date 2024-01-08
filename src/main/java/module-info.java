@@ -9,9 +9,12 @@ module app {
     requires jakarta.persistence;
     requires java.persistence;
     requires java.naming;
+    requires java.desktop;
 
     opens app to javafx.fxml;
     exports app;
     exports Entities.Usuarios;
     exports app.ViewControllers.Admin.Usuario;
+    exports app.ViewControllers;
+    exports app.ViewControllers.Cliente;
 }

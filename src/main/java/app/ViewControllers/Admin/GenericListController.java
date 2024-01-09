@@ -1,6 +1,6 @@
 package app.ViewControllers.Admin;
 
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static app.EntityManager.ROWS_PER_PAGE;
+import static Util.EntityManager.ROWS_PER_PAGE;
 
 public abstract class GenericListController extends ViewController {
 

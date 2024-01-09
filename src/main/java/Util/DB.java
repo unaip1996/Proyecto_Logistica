@@ -1,4 +1,4 @@
-package app;
+package Util;
 
 import Util.LogHandler;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,7 @@ public class DB {
 
     private SessionFactory sessionFactory;
 
-    protected void setUp() {
+    public void setUp() {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry =
                 new StandardServiceRegistryBuilder()

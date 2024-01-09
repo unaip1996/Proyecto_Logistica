@@ -1,7 +1,7 @@
 package app.ViewControllers;
 
 import Entities.Usuarios.Cliente;
-import app.EntityManager;
+import Util.EntityManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

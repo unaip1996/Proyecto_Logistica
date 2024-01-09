@@ -1,6 +1,6 @@
 package app.ViewControllers;
 
-import app.EntityManager;
+import Util.EntityManager;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

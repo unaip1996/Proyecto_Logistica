@@ -1,7 +1,10 @@
 package Util;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 
 public class ViewUtils {
 
@@ -20,5 +23,16 @@ public class ViewUtils {
         valueFactory.setValue(1);
 
         spinner.setValueFactory(valueFactory);
+    }
+
+    public static void setDecimalBehaviour(TextField textfield) {
+        textfield.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*(\\.\\d*)?")) {
+                    textfield.setText(oldValue);
+                }
+            }
+        });
     }
 }

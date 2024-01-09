@@ -1,7 +1,6 @@
-package app;
+package Util;
 
-import Util.LogHandler;
-import Util.SerializableEntity;
+import app.App;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Query;
 import jakarta.persistence.Table;

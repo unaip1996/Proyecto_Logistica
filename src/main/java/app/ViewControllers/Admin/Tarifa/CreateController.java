@@ -1,12 +1,14 @@
-package app.ViewControllers.Admin.Direccion;
+package app.ViewControllers.Admin.Tarifa;
 
-import Util.ViewUtils;
 import Util.EntityManager;
+import Util.ViewUtils;
 import app.ViewControllers.ViewController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,31 +22,22 @@ public class CreateController extends ViewController {
     public Label error_label;
 
     @FXML
-    public TextField calle_input;
+    public TextField altura_input;
 
     @FXML
-    public TextField ciudad_input;
+    public TextField anchura_input;
 
     @FXML
-    public Spinner<Integer> cp_input;
+    public TextField diagonal_input;
 
     @FXML
-    public TextField puerta_input;
+    public TextField nombre_input;
 
     @FXML
-    public TextField esc_input;
+    public TextField peso_input;
 
     @FXML
-    public Spinner<Integer> numero_input;
-
-    @FXML
-    public TextField pais_input;
-
-    @FXML
-    public Spinner<Integer> piso_input;
-
-    @FXML
-    public TextField provincia_input;
+    public TextField precio_input;
 
     /**
      * Called to initialize a controller after its root element has been
@@ -60,9 +53,14 @@ public class CreateController extends ViewController {
 
         em = new EntityManager();
 
-        ViewUtils.initializeSpinner(numero_input, 50);
-        ViewUtils.initializeSpinner(piso_input, 50);
-        ViewUtils.initializeSpinner(cp_input, 50000);
+        ViewUtils.setDecimalBehaviour(precio_input);
+        ViewUtils.setDecimalBehaviour(altura_input);
+        ViewUtils.setDecimalBehaviour(anchura_input);
+        ViewUtils.setDecimalBehaviour(diagonal_input);
+        ViewUtils.setDecimalBehaviour(peso_input);
+
+        //Control para que solo puedan introducirse decimales
+
         back_button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,24 +71,21 @@ public class CreateController extends ViewController {
             @Override
             public void handle(ActionEvent event) {
 
-                String pais = pais_input.getText();
-                String provincia = provincia_input.getText();
-                String ciudad = ciudad_input.getText();
-                String calle = calle_input.getText();
-                int numero = numero_input.getValue();
-                String esc = esc_input.getText();
-                String puerta = puerta_input.getText();
-                int piso = piso_input.getValue();
-                int cp = cp_input.getValue();
+                String peso = peso_input.getText();
+                String anchura = anchura_input.getText();
+                String altura = altura_input.getText();
+                String diagonal = diagonal_input.getText();
+                String precio = precio_input.getText();
+                String nombre = nombre_input.getText();
 
-                String[] fields = {pais, provincia, ciudad, calle, String.valueOf(numero), String.valueOf(cp)};
+                String[] fields = {peso, anchura, altura, diagonal, precio, nombre};
 
                 save_button.setDisable(true);
 
                 if (ViewUtils.validateFields(fields)) {
-                    String[] parameters = new String[]{pais, provincia, ciudad, calle, String.valueOf(numero), String.valueOf(cp), String.valueOf(piso), puerta, esc};
+                    String[] parameters = fields;
 
-                    em.executeNativeQuery("INSERT INTO Direccion(pais, provincia, ciudad, calle, numero, codigo_postal, piso, puerta, esc) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9)", parameters);
+                    em.executeNativeQuery("INSERT INTO Tarifa(peso, anchura, altura, diagonal, precio, nombre) VALUES(?1,?2,?3,?4,?5,?6)", parameters);
 
                     back(event);
                 } else {
@@ -105,6 +100,6 @@ public class CreateController extends ViewController {
     }
 
     private void back(ActionEvent event) {
-        goToWindow("src/main/resources/Admin/Direccion/List.fxml", event);
+        goToWindow("src/main/resources/Admin/Tarifa/List.fxml", event);
     }
 }

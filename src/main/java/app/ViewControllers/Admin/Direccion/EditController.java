@@ -1,7 +1,7 @@
 package app.ViewControllers.Admin.Direccion;
 
 import Util.ViewUtils;
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,8 +48,6 @@ public class EditController extends ViewController {
 
     @FXML
     public TextField provincia_input;
-
-    private EntityManager em;
 
     /**
      * Called to initialize a controller after its root element has been

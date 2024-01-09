@@ -1,7 +1,7 @@
 package app.ViewControllers.Admin.Usuario;
 
 import Entities.Usuarios.Usuario;
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

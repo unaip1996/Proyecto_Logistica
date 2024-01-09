@@ -31,7 +31,7 @@
    <left>
       <AnchorPane fx:id="center" prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
           <children>
-              <Label layoutX="261.0" layoutY="38.0" text="Nueva Dirección" textFill="#0e185f">
+              <Label layoutX="261.0" layoutY="38.0" text="Editar Dirección" textFill="#0e185f">
                   ">
                   <font>
                       <Font size="24.0" />

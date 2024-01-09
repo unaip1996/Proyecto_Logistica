@@ -2,6 +2,7 @@ package Entities.operaciones;
 
 import Entities.Usuarios.Cliente;
 import Util.SerializableEntity;
+import app.EntityManager;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,10 +15,14 @@ public class Direccion implements SerializableEntity {
     private String pais;
     private String provincia;
     private String ciudad;
-    private String calle;
     private int numero;
-    private String escalera;
+    private String calle;
+    private String esc;
+    private int piso;
+    private Character puerta;
     private int codigoPostal;
+
+    private String text;
 
 
     @ManyToOne
@@ -25,6 +30,38 @@ public class Direccion implements SerializableEntity {
     private Cliente cliente;
 
 
+    public Direccion(int id, String pais, String provincia, String ciudad, int numero, String calle, String esc, int piso, Character puerta, int codigoPostal, Integer clienteId) {
+        this.id = id;
+        this.pais = pais;
+        this.provincia = provincia;
+        this.ciudad = ciudad;
+        this.numero = numero;
+        this.calle = calle;
+        this.esc = esc;
+        this.piso = piso;
+        this.puerta = puerta;
+        this.codigoPostal = codigoPostal;
+
+        this.text = pais
+                + ", " + provincia
+                + ", " + ciudad
+                + ", C/" + calle
+                + ", Nº " + numero
+                + ", Esc. " + esc
+                + ", " + piso + "º"
+                + puerta
+                + ", CP: " + codigoPostal
+                ;
+
+        if (clienteId != null) {
+            EntityManager em = new EntityManager();
+            this.cliente = (Cliente) em.selectOne(Cliente.class, "WHERE id=?1", new String[]{clienteId.toString()});
+        }
+    }
+
+    public Direccion() {
+
+    }
 
     public int getId() {
         return id;
@@ -60,18 +97,14 @@ public class Direccion implements SerializableEntity {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    public String getEscalera() {
-        return escalera;
-    }
-    public void setEscalera(String escalera) {
-        this.escalera = escalera;
-    }
     public int getCodigoPostal() {
         return codigoPostal;
     }
     public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
+
+
 
     public Cliente getCliente() {
         return cliente;
@@ -81,4 +114,35 @@ public class Direccion implements SerializableEntity {
         this.cliente = cliente;
     }
 
+    public String getEsc() {
+        return esc;
+    }
+
+    public void setEsc(String esc) {
+        this.esc = esc;
+    }
+
+    public int getPiso() {
+        return piso;
+    }
+
+    public void setPiso(int piso) {
+        this.piso = piso;
+    }
+
+    public Character getPuerta() {
+        return puerta;
+    }
+
+    public void setPuerta(Character puerta) {
+        this.puerta = puerta;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

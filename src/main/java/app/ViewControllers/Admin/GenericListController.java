@@ -1,6 +1,5 @@
 package app.ViewControllers.Admin;
 
-import Entities.Usuarios.Usuario;
 import app.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
@@ -55,6 +54,8 @@ public abstract class GenericListController extends ViewController {
     //Index de paginación
     public static int paginationIndex = -1;
 
+    protected boolean columns_width_auto = true;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -103,7 +104,9 @@ public abstract class GenericListController extends ViewController {
 
         actions.setSortable(false);
 
-        datos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        if (columns_width_auto) {
+            datos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        }
         datos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         initPagination();
@@ -118,8 +121,8 @@ public abstract class GenericListController extends ViewController {
         items = FXCollections.observableArrayList();
         List<Object> itemList = em.select(classname, index, "");
 
-        for(Object item : itemList) {
-            items.add(item);
+        if (!itemList.isEmpty()) {
+            items.addAll(itemList);
         }
 
         datos.setItems(items);
@@ -138,7 +141,7 @@ public abstract class GenericListController extends ViewController {
      * Inicializar propiedades de la paginación
      */
     private void initPagination(){
-        int count = em.getTableCount(Usuario.class);
+        int count = em.getTableCount(classname);
 
         int numOfPages = 1;
         if (count % ROWS_PER_PAGE == 0) {

@@ -18,6 +18,11 @@ module app {
     exports app.ViewControllers.Admin;
     exports app.ViewControllers.Admin.Usuario;
     exports app.ViewControllers.Admin.Direccion;
+    exports app.ViewControllers.Admin.Tarifa;
+    exports app.ViewControllers.Admin.Puerto;
+    exports app.ViewControllers.Admin.Aeropuerto;
     exports app.ViewControllers;
     exports app.ViewControllers.Cliente;
+    exports Util;
+    opens Util to javafx.fxml;
 }

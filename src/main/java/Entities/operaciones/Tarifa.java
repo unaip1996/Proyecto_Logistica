@@ -26,6 +26,10 @@ public class Tarifa implements SerializableEntity {
     private double diagonalMm;
     private double precio;
 
+    private String nombre;
+
+    private String dimensiones;
+
     public Tarifa() {
     }
 
@@ -38,12 +42,27 @@ public class Tarifa implements SerializableEntity {
      * @param diagonalMm
      * @param precio
      */
-    public Tarifa(double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio) {
+    public Tarifa(double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio, String nombre) {
         this.pesoKg = pesoKg;
         this.anchuraMn = anchuraMn;
         this.alturaMn = alturaMn;
         this.diagonalMm = diagonalMm;
         this.precio = precio;
+        this.nombre = nombre;
+
+        this.setDimensiones();
+    }
+
+    public Tarifa(int id, double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio, String nombre) {
+        this.id = id;
+        this.pesoKg = pesoKg;
+        this.anchuraMn = anchuraMn;
+        this.alturaMn = alturaMn;
+        this.diagonalMm = diagonalMm;
+        this.precio = precio;
+        this.nombre = nombre;
+
+        this.setDimensiones();
     }
 
     // getters / setters
@@ -94,5 +113,21 @@ public class Tarifa implements SerializableEntity {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDimensiones() {
+        return dimensiones;
+    }
+
+    public void setDimensiones() {
+        this.dimensiones = alturaMn + "mm X " + anchuraMn + "mm X " + diagonalMm + "mm";
     }
 }

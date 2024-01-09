@@ -28,6 +28,12 @@ public class Coordenada implements SerializableEntity {
     public Coordenada() {
     }
 
+    public Coordenada(int id, double latitud, double longitud) {
+        this.id = id;
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+
     /**
      *
      * @param latitud

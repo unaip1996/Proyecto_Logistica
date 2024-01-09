@@ -2,7 +2,7 @@ package Entities.operaciones;
 
 import Entities.Usuarios.Cliente;
 import Util.SerializableEntity;
-import app.EntityManager;
+import Util.EntityManager;
 import jakarta.persistence.*;
 
 @Entity

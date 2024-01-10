@@ -64,6 +64,7 @@ public class EntityManager {
      * Devuelve una lista de objetos de entidad que cumplan los requerimientos de la consulta
      *
      * @param classname Literal de clase de la entidad (Ej.: Usuario.class)
+     * @param pageNumber Índice de paginación, valor -1 para que devuelva sin paginar
      * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
      * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
      * @return List<Entity>
@@ -83,8 +84,10 @@ public class EntityManager {
             for (int i = 0; i < parameters.length; i++) {
                 query.setParameter(i+1, parameters[i]);
             }
-            query.setFirstResult(pageNumber * ROWS_PER_PAGE);
-            query.setMaxResults(ROWS_PER_PAGE);
+            if (pageNumber != -1) {
+                query.setFirstResult(pageNumber * ROWS_PER_PAGE);
+                query.setMaxResults(ROWS_PER_PAGE);
+            }
 
             entities = query.getResultList();
 

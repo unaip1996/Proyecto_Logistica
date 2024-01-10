@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.Operacion.CreateController">
+   <top>
+      <AnchorPane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #0e185f;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="123.0" layoutY="20.0" text="Gestión Logística" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="72.0" fitWidth="64.0" layoutX="46.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../img/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane fx:id="center" prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane layoutX="19.0" layoutY="77.0" prefHeight="196.0" prefWidth="668.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="650.0">
+                     <children>
+                        <Button id="back_button" fx:id="back_button" layoutX="212.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancelar" textFill="#800c0c" />
+                        <Label layoutX="232.0" layoutY="40.0" text="Usuario" />
+                        <Label layoutX="50.0" layoutY="144.0" text="Peso del empaquetado     *" />
+                        <ComboBox fx:id="cliente_input" layoutX="232.0" layoutY="76.0" prefWidth="150.0" />
+                        <Label layoutX="50.0" layoutY="40.0" text="Factura     *" />
+                        <ComboBox fx:id="factura_input" layoutX="50.0" layoutY="76.0" prefWidth="150.0" />
+                        <Label layoutX="442.0" layoutY="40.0" text="Direccion     *" />
+                        <ComboBox fx:id="direccion_input" layoutX="439.0" layoutY="76.0" prefWidth="150.0" />
+                        <TextField fx:id="peso_input" layoutX="50.0" layoutY="184.0" prefHeight="25.0" prefWidth="86.0" />
+                        <Button fx:id="save_button" layoutX="367.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Guardar" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Label layoutX="261.0" layoutY="38.0" text="Nueva Operacion" textFill="#0e185f">
+">
+                           <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="error_label" layoutX="92.0" layoutY="281.0" textFill="#800c0c" />
+<!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

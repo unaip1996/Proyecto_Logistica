@@ -6,6 +6,11 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class ViewUtils {
 
     public static boolean validateFields(String[] fields) {
@@ -34,5 +39,9 @@ public class ViewUtils {
                 }
             }
         });
+    }
+
+    public static LocalDate dateToLocalDate(Date date) {
+        return LocalDate.ofInstant(Instant.ofEpochMilli(date.getTime()), ZoneId.systemDefault());
     }
 }

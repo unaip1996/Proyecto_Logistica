@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.Direccion.ListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.Operacion.ListController">
    <top>
       <AnchorPane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #0e185f;" BorderPane.alignment="CENTER">
          <children>
@@ -31,20 +31,22 @@
    <left>
       <AnchorPane prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="290.0" layoutY="38.0" text="Direcciones" textFill="#0e185f">
+            <Label layoutX="285.0" layoutY="38.0" text="Operaciones" textFill="#0e185f">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <TableView fx:id="datos" layoutX="82.0" layoutY="95.0" prefHeight="243.0" prefWidth="537.0">
                <columns>
-                  <TableColumn fx:id="text" prefWidth="334.0" style="-fx-alignment: CENTER;" text="Direccion" />
-                  <TableColumn fx:id="usuario" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: CENTER;" text="Usuario" />
-                  <TableColumn fx:id="actions" prefWidth="77.0" style="-fx-alignment: CENTER;" text="Acciones" />
+                  <TableColumn fx:id="direccion" prefWidth="163.0" text="Direccion" />
+                  <TableColumn fx:id="tarifa" prefWidth="84.0" text="Tarifa" />
+                  <TableColumn fx:id="cliente" prefWidth="96.0" text="Cliente" />
+                  <TableColumn fx:id="entregado" prefWidth="87.0" text="Entregado" />
+                  <TableColumn fx:id="actions" minWidth="0.0" prefWidth="106.0" style="-fx-alignment: CENTER;" text="Acciones" />
                </columns>
             </TableView>
             <Pagination fx:id="pagination" layoutX="82.0" layoutY="346.0" prefHeight="53.0" prefWidth="538.0" />
-            <Button fx:id="newItem" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nueva dirección" />
+            <Button fx:id="newItem" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Nueva operación" />
             <Button fx:id="deleteItems" layoutX="554.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Eliminar" />
 
             <!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->

@@ -1,5 +1,6 @@
 package Entities.operaciones;
 
+import Util.EntityManager;
 import Util.SerializableEntity;
 import jakarta.persistence.*;
 import Entities.Usuarios.Cliente;
@@ -10,7 +11,12 @@ import java.util.Date;
 @Table(name = "Factura")
 public class Factura implements SerializableEntity { // Definición de la clase Factura
     // Campos privados de la clase Factura
-    private String numeroFactura;// Número de factura
+
+
+    @Id
+    @GeneratedValue
+    private int id;
+    private String cantidad;// Número de factura
     private Date fecha;// Fecha de la factura
 
 
@@ -18,9 +24,6 @@ public class Factura implements SerializableEntity { // Definición de la clase 
     @JoinColumn(name = "usuario_id")
     private Cliente cliente; // Cliente asociado a la factura (de la clase Usuarios.Usuario)
     private double montoTotal;// Monto total de la factura
-    @Id
-    @GeneratedValue
-    private int id;
 
     public Factura() {
 
@@ -29,16 +32,28 @@ public class Factura implements SerializableEntity { // Definición de la clase 
     /**
      * Constructor de la clase Factura que recibe varios parámetros para inicializar los campos
      *
-     * @param numeroFactura
+     * @param cantidad
      * @param fecha
      * @param cliente
      * @param montoTotal
      */
-    public Factura(String numeroFactura, Date fecha, Cliente cliente, double montoTotal) {
-        this.numeroFactura = numeroFactura;
+    public Factura(String cantidad, Date fecha, Cliente cliente, double montoTotal) {
+        this.cantidad = cantidad;
         this.fecha = fecha;
         this.cliente = cliente;
         this.montoTotal = montoTotal;
+    }
+
+    public Factura(int id, String cantidad, double montoTotal, Date fecha, Integer clienteId) {
+        this.id = id;
+        this.cantidad = cantidad;
+        this.fecha = fecha;
+        this.montoTotal = montoTotal;
+
+        if (clienteId != null) {
+            Util.EntityManager em = new EntityManager();
+            this.cliente = (Cliente) em.selectOne(Cliente.class, "WHERE id=?1", new String[]{clienteId.toString()});
+        }
     }
 
     /**
@@ -46,7 +61,7 @@ public class Factura implements SerializableEntity { // Definición de la clase 
      *
      */
     public void mostrarFactura() {
-        System.out.println("Número de Factura: " + numeroFactura);
+        System.out.println("Número de Factura: " + cantidad);
         System.out.println("Fecha: " + fecha);
         System.out.println("Cliente: " + cliente);
         System.out.println("Monto Total: $" + montoTotal);
@@ -57,12 +72,12 @@ public class Factura implements SerializableEntity { // Definición de la clase 
         return id;
     }
 
-    public String getNumeroFactura() {
-        return numeroFactura;
+    public String getCantidad() {
+        return cantidad;
     }
 
-    public void setNumeroFactura(String numeroFactura) {
-        this.numeroFactura = numeroFactura;
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public Date getFecha() {

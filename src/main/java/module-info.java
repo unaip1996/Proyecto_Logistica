@@ -21,6 +21,8 @@ module app {
     exports app.ViewControllers.Admin.Tarifa;
     exports app.ViewControllers.Admin.Puerto;
     exports app.ViewControllers.Admin.Aeropuerto;
+    exports app.ViewControllers.Admin.Factura;
+    exports app.ViewControllers.Admin.Operacion;
     exports app.ViewControllers;
     exports app.ViewControllers.Cliente;
     exports Util;

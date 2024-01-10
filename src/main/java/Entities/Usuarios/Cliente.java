@@ -45,4 +45,9 @@ public class Cliente extends Usuario {
     public Cliente() {
 
     }
+
+    @Override
+    public String toString() {
+        return nick;
+    }
 }

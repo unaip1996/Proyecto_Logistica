@@ -82,7 +82,7 @@ public abstract class GenericListController extends ViewController {
                 if (!selectedItems.isEmpty()) {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Eliminación de elementos");
-                    alert.setHeaderText("Se  eliminarán los elementos seleccionados, ¿Estás seguro?");
+                    alert.setHeaderText("Se eliminarán los elementos seleccionados, ¿Estás seguro?");
 
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK){
@@ -96,7 +96,7 @@ public abstract class GenericListController extends ViewController {
                 } else {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Eliminación de elementos");
-                    alert.setHeaderText("No has seleccionado ningún usuario");
+                    alert.setHeaderText("No has seleccionado ningún elemento");
                     alert.show();
                 }
             }

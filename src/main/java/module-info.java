@@ -14,8 +14,17 @@ module app {
     opens app to javafx.fxml;
     exports app;
     exports Entities.Usuarios;
+    exports Entities.operaciones;
     exports app.ViewControllers.Admin;
     exports app.ViewControllers.Admin.Usuario;
+    exports app.ViewControllers.Admin.Direccion;
+    exports app.ViewControllers.Admin.Tarifa;
+    exports app.ViewControllers.Admin.Puerto;
+    exports app.ViewControllers.Admin.Aeropuerto;
+    exports app.ViewControllers.Admin.Factura;
+    exports app.ViewControllers.Admin.Operacion;
     exports app.ViewControllers;
     exports app.ViewControllers.Cliente;
+    exports Util;
+    opens Util to javafx.fxml;
 }

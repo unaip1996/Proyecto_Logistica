@@ -1,7 +1,6 @@
 package app.ViewControllers.Admin;
 
-import Entities.Usuarios.Usuario;
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static app.EntityManager.ROWS_PER_PAGE;
+import static Util.EntityManager.ROWS_PER_PAGE;
 
 public abstract class GenericListController extends ViewController {
 
@@ -55,6 +54,8 @@ public abstract class GenericListController extends ViewController {
     //Index de paginación
     public static int paginationIndex = -1;
 
+    protected boolean columns_width_auto = true;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -81,7 +82,7 @@ public abstract class GenericListController extends ViewController {
                 if (!selectedItems.isEmpty()) {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Eliminación de elementos");
-                    alert.setHeaderText("Se  eliminarán los elementos seleccionados, ¿Estás seguro?");
+                    alert.setHeaderText("Se eliminarán los elementos seleccionados, ¿Estás seguro?");
 
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK){
@@ -95,7 +96,7 @@ public abstract class GenericListController extends ViewController {
                 } else {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Eliminación de elementos");
-                    alert.setHeaderText("No has seleccionado ningún usuario");
+                    alert.setHeaderText("No has seleccionado ningún elemento");
                     alert.show();
                 }
             }
@@ -103,7 +104,9 @@ public abstract class GenericListController extends ViewController {
 
         actions.setSortable(false);
 
-        datos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        if (columns_width_auto) {
+            datos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        }
         datos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         initPagination();
@@ -118,8 +121,8 @@ public abstract class GenericListController extends ViewController {
         items = FXCollections.observableArrayList();
         List<Object> itemList = em.select(classname, index, "");
 
-        for(Object item : itemList) {
-            items.add(item);
+        if (!itemList.isEmpty()) {
+            items.addAll(itemList);
         }
 
         datos.setItems(items);
@@ -138,7 +141,7 @@ public abstract class GenericListController extends ViewController {
      * Inicializar propiedades de la paginación
      */
     private void initPagination(){
-        int count = em.getTableCount(Usuario.class);
+        int count = em.getTableCount(classname);
 
         int numOfPages = 1;
         if (count % ROWS_PER_PAGE == 0) {

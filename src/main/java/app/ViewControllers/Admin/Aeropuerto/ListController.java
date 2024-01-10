@@ -1,8 +1,7 @@
-package app.ViewControllers.Admin.Usuario;
+package app.ViewControllers.Admin.Aeropuerto;
 
-import Entities.Usuarios.Usuario;
+import Entities.operaciones.Aeropuerto;
 import app.ViewControllers.Admin.GenericListController;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,42 +18,24 @@ import java.util.ResourceBundle;
 
 public class ListController extends GenericListController {
 
-    public static Usuario selectedItem;
+    public static Aeropuerto selectedItem;
 
 
+
     @FXML
-    public TableColumn<Usuario, String> nick;
-    @FXML
-    public TableColumn<Usuario, String> numberphone;
-    @FXML
-    public TableColumn<Usuario, String> mail;
-    
-    @FXML
-    public TableColumn<Usuario, String> type_user;
-    @FXML
-    public TableColumn<Usuario, Boolean> actions;
+    public TableColumn<Aeropuerto, String> nombre;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nick.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nick"));
-        numberphone.setCellValueFactory(new PropertyValueFactory<Usuario, String>("numberphone"));
-        mail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("mail"));
+        this.columns_width_auto=false;
 
-        type_user.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Usuario, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Usuario, String> p) {
-                        int type = p.getValue().getType_user();
-                        return new ReadOnlyStringWrapper(type == Usuario.ADMINTYPE ? "Administrador" : "Cliente");
-                    }
-                }
-        );
+        nombre.setCellValueFactory(new PropertyValueFactory<Aeropuerto, String>("nombre"));
 
-        this.create_screen_path = "src/main/resources/Admin/Usuario/Create.fxml";
-        this.edit_screen_path = "src/main/resources/Admin/Usuario/Edit.fxml";
-        this.classname = Usuario.class;
+        this.create_screen_path = "src/main/resources/Admin/Aeropuerto/Create.fxml";
+        this.edit_screen_path = "src/main/resources/Admin/Aeropuerto/Edit.fxml";
+        this.classname = Aeropuerto.class;
 
         super.initialize(url, resourceBundle);
     }
@@ -63,7 +44,7 @@ public class ListController extends GenericListController {
     /**
      * Celda de edición de cada fila
      */
-    public class EditCell extends TableCell<Usuario, Boolean> {
+    public class EditCell extends TableCell<Aeropuerto, Boolean> {
         Button cellButton = new Button("Editar");
 
 
@@ -74,7 +55,7 @@ public class ListController extends GenericListController {
                 @Override
                 public void handle(ActionEvent t) {
                     int selectedIndex = getTableRow().getIndex();
-                    ListController.selectedItem = (Usuario) datos.getItems().get(selectedIndex);
+                    ListController.selectedItem = (Aeropuerto) datos.getItems().get(selectedIndex);
 
                     goToWindow(edit_screen_path, t);
                 }
@@ -93,7 +74,7 @@ public class ListController extends GenericListController {
 
     protected void paintEditButtons() {
         actions.setCellFactory(
-                new Callback<TableColumn<Usuario, Boolean>, TableCell<Usuario, Boolean>>() {
+                new Callback<TableColumn<Aeropuerto, Boolean>, TableCell<Aeropuerto, Boolean>>() {
 
                     @Override
                     public TableCell call(TableColumn p) {
@@ -102,7 +83,7 @@ public class ListController extends GenericListController {
 
                 });
         actions.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Usuario, Boolean>,
+                new Callback<TableColumn.CellDataFeatures<Aeropuerto, Boolean>,
                         ObservableValue<Boolean>>() {
 
                     @Override

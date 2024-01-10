@@ -18,7 +18,7 @@ public class Aeropuerto {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     private String nombre;
 
@@ -27,11 +27,18 @@ public class Aeropuerto {
     public Aeropuerto() {
     }
 
+
+
     /**
      *
      * @param nombre
      */
     public Aeropuerto(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Aeropuerto(int id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
@@ -46,11 +53,11 @@ public class Aeropuerto {
         this.nombre = nombre;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

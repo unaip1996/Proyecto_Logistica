@@ -1,9 +1,10 @@
-package app.ViewControllers.Admin.Usuario;
+package app.ViewControllers.Admin.Direccion;
 
-import Entities.Usuarios.Usuario;
+import Entities.Usuarios.Cliente;
+import Entities.operaciones.Direccion;
 import app.ViewControllers.Admin.GenericListController;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,42 +20,38 @@ import java.util.ResourceBundle;
 
 public class ListController extends GenericListController {
 
-    public static Usuario selectedItem;
+    public static Direccion selectedItem;
 
 
     @FXML
-    public TableColumn<Usuario, String> nick;
+    public TableColumn<Direccion, String> text;
+
     @FXML
-    public TableColumn<Usuario, String> numberphone;
+    public TableColumn<Direccion, String> usuario;
     @FXML
-    public TableColumn<Usuario, String> mail;
-    
-    @FXML
-    public TableColumn<Usuario, String> type_user;
-    @FXML
-    public TableColumn<Usuario, Boolean> actions;
+    public TableColumn<Direccion, Boolean> actions;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nick.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nick"));
-        numberphone.setCellValueFactory(new PropertyValueFactory<Usuario, String>("numberphone"));
-        mail.setCellValueFactory(new PropertyValueFactory<Usuario, String>("mail"));
+        this.columns_width_auto = false;
+        text.setCellValueFactory(new PropertyValueFactory<Direccion, String>("text"));
+        usuario.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Direccion, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Direccion, String> param) {
+                String nick;
 
-        type_user.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Usuario, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<Usuario, String> p) {
-                        int type = p.getValue().getType_user();
-                        return new ReadOnlyStringWrapper(type == Usuario.ADMINTYPE ? "Administrador" : "Cliente");
-                    }
-                }
-        );
+                Cliente cliente = param.getValue().getCliente();
+                nick = cliente == null ? null : cliente.getNick();
 
-        this.create_screen_path = "src/main/resources/Admin/Usuario/Create.fxml";
-        this.edit_screen_path = "src/main/resources/Admin/Usuario/Edit.fxml";
-        this.classname = Usuario.class;
+                return new SimpleStringProperty(nick);
+            }
+        });
+
+        this.create_screen_path = "src/main/resources/Admin/Direccion/Create.fxml";
+        this.edit_screen_path = "src/main/resources/Admin/Direccion/Edit.fxml";
+        this.classname = Direccion.class;
 
         super.initialize(url, resourceBundle);
     }
@@ -63,7 +60,7 @@ public class ListController extends GenericListController {
     /**
      * Celda de edición de cada fila
      */
-    public class EditCell extends TableCell<Usuario, Boolean> {
+    public class EditCell extends TableCell<Direccion, Boolean> {
         Button cellButton = new Button("Editar");
 
 
@@ -74,7 +71,7 @@ public class ListController extends GenericListController {
                 @Override
                 public void handle(ActionEvent t) {
                     int selectedIndex = getTableRow().getIndex();
-                    ListController.selectedItem = (Usuario) datos.getItems().get(selectedIndex);
+                    ListController.selectedItem = (Direccion) datos.getItems().get(selectedIndex);
 
                     goToWindow(edit_screen_path, t);
                 }
@@ -93,7 +90,7 @@ public class ListController extends GenericListController {
 
     protected void paintEditButtons() {
         actions.setCellFactory(
-                new Callback<TableColumn<Usuario, Boolean>, TableCell<Usuario, Boolean>>() {
+                new Callback<TableColumn<Direccion, Boolean>, TableCell<Direccion, Boolean>>() {
 
                     @Override
                     public TableCell call(TableColumn p) {
@@ -102,7 +99,7 @@ public class ListController extends GenericListController {
 
                 });
         actions.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Usuario, Boolean>,
+                new Callback<TableColumn.CellDataFeatures<Direccion, Boolean>,
                         ObservableValue<Boolean>>() {
 
                     @Override

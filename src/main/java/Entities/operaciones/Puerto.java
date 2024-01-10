@@ -31,6 +31,11 @@ public class Puerto implements SerializableEntity {
         this.nombre = nombre;
     }
 
+    public Puerto(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     // getters / setters
 
     public int getId() {

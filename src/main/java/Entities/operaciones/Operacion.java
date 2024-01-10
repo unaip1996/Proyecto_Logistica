@@ -26,8 +26,8 @@ public class Operacion implements SerializableEntity {
     private ArrayList<Ruta> rutas;
 
     @ManyToOne
-    @JoinColumn(name = "empaquetado_id")
-    private Empaquetado empaquetado;
+    @JoinColumn(name = "tarifa_id")
+    private Tarifa tarifa;
 
     @ManyToOne
     @JoinColumn(name = "factura_id")
@@ -37,16 +37,19 @@ public class Operacion implements SerializableEntity {
     @JoinColumn(name = "direccion_id")
     private Direccion direccion;
 
+    private double pesoEmpaquetado;
+
     //Constructores
 
 
     public Operacion() {
     }
 
-    public Operacion(ArrayList<Ruta> rutas, Empaquetado empaquetado, Factura factura, Direccion direccion) {
-        this.rutas = rutas;
-        this.empaquetado = empaquetado;
+    public Operacion(Tarifa tarifa, Factura factura, Direccion direccion, double pesoEmpaquetado) {
+        this.tarifa = tarifa;
         this.factura = factura;
+        this.direccion = direccion;
+        this.pesoEmpaquetado = pesoEmpaquetado;
     }
 
     // getters / setters
@@ -64,12 +67,12 @@ public class Operacion implements SerializableEntity {
         this.rutas = rutas;
     }
 
-    public Empaquetado getEmpaquetado() {
-        return empaquetado;
+    public Tarifa getTarifa() {
+        return tarifa;
     }
 
-    public void setEmpaquetado(Empaquetado empaquetado) {
-        this.empaquetado = empaquetado;
+    public void setTarifa(Tarifa tarifa) {
+        this.tarifa = tarifa;
     }
 
     public Factura getFactura() {
@@ -85,5 +88,13 @@ public class Operacion implements SerializableEntity {
     }
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    public double getPesoEmpaquetado() {
+        return pesoEmpaquetado;
+    }
+
+    public void setPesoEmpaquetado(double pesoEmpaquetado) {
+        this.pesoEmpaquetado = pesoEmpaquetado;
     }
 }

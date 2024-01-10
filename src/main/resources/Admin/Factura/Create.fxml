@@ -13,20 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.Factura.CreateController">
    <top>
-      <AnchorPane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #0e185f;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="123.0" layoutY="20.0" text="Gestión Logística" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="72.0" fitWidth="64.0" layoutX="46.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../img/logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
+       <fx:include fx:id="menu" source="../menu.fxml" />
    </top>
    <left>
       <AnchorPane fx:id="center" prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">

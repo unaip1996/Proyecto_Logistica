@@ -2,13 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-2.0" prefHeight="86.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.MenuController">
+<AnchorPane layoutY="-2.0" prefHeight="103.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.MenuController">
 
     <children>
-        <Button fx:id="button_usuarios" layoutX="499.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Usuarios" textFill="WHITE">
+        <Button fx:id="button_usuarios" alignment="BOTTOM_CENTER" layoutX="499.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Usuarios" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -16,7 +18,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="button_operaciones" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Operaciones" textFill="WHITE">
+        <Button fx:id="button_operaciones" alignment="BOTTOM_CENTER" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Operaciones" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -24,7 +26,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="button_facturas" layoutX="199.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Facturas" textFill="WHITE">
+        <Button fx:id="button_facturas" alignment="BOTTOM_CENTER" layoutX="199.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Facturas" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -32,8 +34,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-      <Button fx:id="button_logout" layoutX="611.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0E185F; -fx-border-color: #fff;" text="Cerrar sesión" textFill="WHITE" underline="true" />
-      <Button fx:id="button_direcciones" layoutX="99.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Direcciones" textFill="WHITE">
+      <Button fx:id="button_direcciones" alignment="BOTTOM_CENTER" layoutX="99.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Direcciones" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -41,7 +42,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="button_aeropuertos" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Aeropuertos" textFill="WHITE">
+      <Button fx:id="button_aeropuertos" alignment="BOTTOM_CENTER" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Aeropuertos" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -49,7 +50,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="button_puertos" layoutX="399.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Puertos" textFill="WHITE">
+      <Button fx:id="button_puertos" alignment="BOTTOM_CENTER" layoutX="399.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Puertos" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -57,5 +58,48 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="button_logout" alignment="BOTTOM_CENTER" layoutX="599.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Cerrar sesión" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="219.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Helbetal.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="619.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="19.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Operaciones.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="419.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Puertos.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="519.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Users.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="320.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Aeropuertos.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="119.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../img/Direcciones.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

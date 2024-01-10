@@ -7,30 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-2.0" prefHeight="120.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Cliente.MenuController">
+<AnchorPane layoutY="-2.0" prefHeight="103.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Cliente.MenuController">
 
     <children>
-        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="22.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../img/vergolgen.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="213.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../img/Franking.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="422.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../img/Helbetal.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="623.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../img/usuario.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="button_buscar" layoutX="25.0" layoutY="83.0" mnemonicParsing="false" style="-fx-background-color: #0E185F;" text="Buscar" textFill="WHITE">
+        <Button fx:id="button_buscar" alignment="BOTTOM_CENTER" layoutX="2.0" layoutY="1.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Buscar" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -38,7 +18,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="button_cotizar" layoutX="213.0" layoutY="82.0" mnemonicParsing="false" style="-fx-background-color: #0E185F;" text="Cotizar" textFill="WHITE">
+        <Button fx:id="button_cotizar" alignment="BOTTOM_CENTER" layoutX="143.0" layoutY="1.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Cotizar" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -46,7 +26,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="button_facturas" layoutX="424.0" layoutY="86.0" mnemonicParsing="false" style="-fx-background-color: #0E185F;" text="Facturas" textFill="WHITE">
+        <Button fx:id="button_facturas" alignment="BOTTOM_CENTER" layoutX="300.0" layoutY="1.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Facturas" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -54,7 +34,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="button_cuenta" layoutX="617.0" layoutY="86.0" mnemonicParsing="false" style="-fx-background-color: #0E185F;" text="Mi cuenta" textFill="WHITE">
+        <Button fx:id="button_cuenta" alignment="BOTTOM_CENTER" layoutX="446.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Mi cuenta" textFill="WHITE">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -62,6 +42,38 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-      <Button fx:id="button_logout" layoutX="611.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0E185F; -fx-border-color: #fff;" text="Cerrar sesión" textFill="WHITE" underline="true" />
+      <Button fx:id="button_logout" alignment="BOTTOM_CENTER" layoutX="592.0" layoutY="1.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Cerrar sesión" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="612.0" layoutY="10.0">
+         <image>
+            <Image url="@../../../../../img/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="466.0" layoutY="10.0">
+         <image>
+            <Image url="@../../../../../img/usuario.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="22.0" layoutY="10.0">
+         <image>
+            <Image url="@../../../../../img/vergolgen.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="163.0" layoutY="10.0">
+         <image>
+            <Image url="@../../../../../img/Franking.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="320.0" layoutY="10.0">
+         <image>
+            <Image url="@../../../../../img/Helbetal.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

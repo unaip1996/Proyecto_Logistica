@@ -2,7 +2,7 @@ package app.ViewControllers.Cliente;
 
 import Entities.Usuarios.Usuario;
 import Entities.operaciones.Tarifa;
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.Admin.GenericListController;
 import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;

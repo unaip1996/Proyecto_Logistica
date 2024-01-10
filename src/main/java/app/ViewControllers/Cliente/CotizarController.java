@@ -5,7 +5,6 @@ import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,18 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CotizarController extends ViewController implements Initializable {
-
-    @FXML
-    public Button button_buscar;
-
-    @FXML
-    public Button button_cotizar;
-
-    @FXML
-    public Button button_cuenta;
-
-    @FXML
-    public Button button_facturas;
 
     @FXML
     public Button button_buy;
@@ -74,26 +61,6 @@ public class CotizarController extends ViewController implements Initializable {
         precio.setCellValueFactory(new PropertyValueFactory<Tarifa, Double>("id"));
 
         table_cotizar.setItems(listTarifa);
-        button_buscar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Cliente/Usuario/Buscar.fxml", event);
-            }
-        });
-
-        button_facturas.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Cliente/Usuario/Factura.fxml", event);
-            }
-        });
-
-        button_cuenta.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Cliente/Usuario/MiCuenta.fxml", event);
-            }
-        });
     }
 
 

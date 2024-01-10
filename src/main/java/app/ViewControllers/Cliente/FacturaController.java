@@ -1,6 +1,6 @@
 package app.ViewControllers.Cliente;
 
-import app.EntityManager;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

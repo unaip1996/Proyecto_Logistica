@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Cliente.CotizarController">
    <children>
-      <fx:include fx:id="menu" source="menu.fxml" />s
+      <fx:include fx:id="menu" source="menu.fxml" />
       <Text fill="#0e185f" layoutX="294.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cotizar Envio">
          <font>
             <Font name="System Bold" size="18.0" />

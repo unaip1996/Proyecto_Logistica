@@ -52,15 +52,21 @@ public class Tarifa implements SerializableEntity {
 
         this.setDimensiones();
     }
+    /**
+     * Constructor con parametros
+     * @param id
+     * @param nombre
+     * @param dimensiones
+     * @param pesoKg
+     * @param precio
+     */
 
-    public Tarifa(int id, double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio, String nombre) {
+    public Tarifa(int id, String nombre, String dimensiones, double pesoKg, double precio ) {
         this.id = id;
-        this.pesoKg = pesoKg;
-        this.anchuraMn = anchuraMn;
-        this.alturaMn = alturaMn;
-        this.diagonalMm = diagonalMm;
-        this.precio = precio;
         this.nombre = nombre;
+        this.dimensiones = dimensiones;
+        this.pesoKg = pesoKg;
+        this.precio = precio;
 
         this.setDimensiones();
     }

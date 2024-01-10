@@ -93,6 +93,18 @@
                     <source>21</source>
                     <target>21</target>
                 </configuration>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <transformers>
+                                <transformer>
+                                    <mainClass>app.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -103,7 +115,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>main.java.App</mainClass>
+                            <mainClass>app.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

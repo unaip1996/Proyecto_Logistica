@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -77,7 +78,7 @@ public class ListController extends GenericListController {
      */
     public class ActionsCell extends TableCell<Operacion, Boolean> {
         Button editButton = new Button("Editar");
-        Button statusButton = new Button("Ver estado");
+//        Button statusButton = new Button("Ver estado");
 
 
         public ActionsCell(){
@@ -86,21 +87,14 @@ public class ListController extends GenericListController {
 
                 @Override
                 public void handle(ActionEvent t) {
-                    int selectedIndex = getTableRow().getIndex();
-                    ListController.selectedItem = (Operacion) datos.getItems().get(selectedIndex);
-
-                    goToWindow(edit_screen_path, t);
-                }
-            });
-
-            statusButton.setOnAction(new EventHandler<ActionEvent>(){
-
-                @Override
-                public void handle(ActionEvent t) {
-                    int selectedIndex = getTableRow().getIndex();
-                    ListController.selectedItem = (Operacion) datos.getItems().get(selectedIndex);
-
-                    goToWindow(edit_screen_path, t);
+//                    int selectedIndex = getTableRow().getIndex();
+//                    ListController.selectedItem = (Operacion) datos.getItems().get(selectedIndex);
+//
+//                    goToWindow(edit_screen_path, t);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Aviso para el profesor");
+                    alert.setHeaderText("La edición no está disponible aun para esta pantalla");
+                    alert.show();
                 }
             });
         }

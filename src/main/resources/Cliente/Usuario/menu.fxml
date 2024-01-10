@@ -12,22 +12,22 @@
     <children>
         <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="22.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../img/vergolgen.png" />
+                <Image url="@../../../../../img/vergolgen.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="213.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../img/Franking.png" />
+                <Image url="@../../../../../img/Franking.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="422.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../img/Helbetal.png" />
+                <Image url="@../../../../../img/Helbetal.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="623.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../img/usuario.png" />
+                <Image url="@../../../../../img/usuario.png" />
             </image>
         </ImageView>
         <Button fx:id="button_buscar" layoutX="25.0" layoutY="83.0" mnemonicParsing="false" style="-fx-background-color: #0E185F;" text="Buscar" textFill="WHITE">

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -22,7 +21,6 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="650.0">
                      <children>
-                        <Button id="back_button" fx:id="back_button" layoutX="212.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancelar" textFill="#800c0c" />
                         <Label layoutX="232.0" layoutY="40.0" text="Usuario" />
                         <Label layoutX="50.0" layoutY="144.0" text="Peso del empaquetado     *" />
                         <ComboBox fx:id="cliente_input" layoutX="232.0" layoutY="76.0" prefWidth="150.0" />
@@ -31,7 +29,8 @@
                         <Label layoutX="442.0" layoutY="40.0" text="Direccion     *" />
                         <ComboBox fx:id="direccion_input" layoutX="439.0" layoutY="76.0" prefWidth="150.0" />
                         <TextField fx:id="peso_input" layoutX="50.0" layoutY="184.0" prefHeight="25.0" prefWidth="86.0" />
-                        <Button fx:id="save_button" layoutX="367.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Guardar" />
+                        <Button fx:id="button_newRuta" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" text="Añadir Ruta" />
+                        <Accordion fx:id="accordion_rutas" layoutX="14.0" layoutY="285.0" prefHeight="206.0" prefWidth="631.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -43,6 +42,8 @@
                </font>
             </Label>
             <Label fx:id="error_label" layoutX="92.0" layoutY="281.0" textFill="#800c0c" />
+             <Button id="back_button" fx:id="back_button" layoutX="240.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancelar" textFill="#800c0c" />
+             <Button fx:id="save_button" layoutX="391.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Guardar" />
 <!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->
          </children>
       </AnchorPane>

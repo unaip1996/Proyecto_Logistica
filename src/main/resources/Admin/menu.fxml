@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane layoutY="-2.0" prefHeight="86.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.MenuController">
+
+    <children>
+        <Button fx:id="button_usuarios" layoutX="499.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Usuarios" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="button_operaciones" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Operaciones" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="button_facturas" layoutX="199.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Facturas" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button fx:id="button_logout" layoutX="611.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #0E185F; -fx-border-color: #fff;" text="Cerrar sesión" textFill="WHITE" underline="true" />
+      <Button fx:id="button_direcciones" layoutX="99.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Direcciones" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_aeropuertos" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Aeropuertos" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_puertos" layoutX="399.0" layoutY="2.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="100.0" style="-fx-background-color: #0E185F; -fx-border-color: #fff; -fx-border-style: hidden solid hidden solid;" text="Puertos" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

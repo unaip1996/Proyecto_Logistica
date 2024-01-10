@@ -117,7 +117,7 @@ public abstract class GenericListController extends ViewController {
      *
      * @param index Posición de la paginación
      */
-    private void paintData(int index) {
+    protected void paintData(int index) {
         items = FXCollections.observableArrayList();
         List<Object> itemList = em.select(classname, index, "");
 

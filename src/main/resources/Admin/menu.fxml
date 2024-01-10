@@ -10,62 +10,6 @@
 <AnchorPane layoutY="-2.0" prefHeight="103.0" prefWidth="700.0" style="-fx-background-color: #0E185F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ViewControllers.Admin.MenuController">
 
     <children>
-        <Button fx:id="button_usuarios" alignment="BOTTOM_CENTER" layoutX="499.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Usuarios" textFill="WHITE">
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-        <Button fx:id="button_operaciones" alignment="BOTTOM_CENTER" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Operaciones" textFill="WHITE">
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-        <Button fx:id="button_facturas" alignment="BOTTOM_CENTER" layoutX="199.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Facturas" textFill="WHITE">
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-      <Button fx:id="button_direcciones" alignment="BOTTOM_CENTER" layoutX="99.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Direcciones" textFill="WHITE">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="button_aeropuertos" alignment="BOTTOM_CENTER" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Aeropuertos" textFill="WHITE">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="button_puertos" alignment="BOTTOM_CENTER" layoutX="399.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Puertos" textFill="WHITE">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="button_logout" alignment="BOTTOM_CENTER" layoutX="599.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #0E185F;" text="Cerrar sesión" textFill="WHITE">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="219.0" layoutY="15.0">
          <image>
             <Image url="@../../../../img/Helbetal.png" />
@@ -101,5 +45,61 @@
             <Image url="@../../../../img/Direcciones.png" />
          </image>
       </ImageView>
+        <Button fx:id="button_usuarios" alignment="BOTTOM_CENTER" layoutX="499.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Usuarios" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="button_operaciones" alignment="BOTTOM_CENTER" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Operaciones" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="button_facturas" alignment="BOTTOM_CENTER" layoutX="199.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Facturas" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button fx:id="button_direcciones" alignment="BOTTOM_CENTER" layoutX="99.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Direcciones" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_aeropuertos" alignment="BOTTOM_CENTER" layoutX="299.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Aeropuertos" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_puertos" alignment="BOTTOM_CENTER" layoutX="399.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Puertos" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_logout" alignment="BOTTOM_CENTER" layoutX="599.0" layoutY="2.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgba(237, 36, 21, 0);" text="Cerrar sesión" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

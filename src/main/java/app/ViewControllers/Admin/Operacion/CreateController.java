@@ -11,13 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,6 +45,14 @@ public class CreateController extends ViewController {
     @FXML
     public TextField peso_input;
 
+    @FXML
+    public Accordion accordion_rutas;
+
+    @FXML
+    public Button button_newRuta;
+
+    private List<RutaView> rutaViews;
+
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -69,6 +78,47 @@ public class CreateController extends ViewController {
         }
 
         cliente_input.setItems(comboboxItems);
+
+
+
+        List<Object> direcciones = em.select(Direccion.class, -1, "");
+
+        ObservableList direccionesItems = FXCollections.observableArrayList();
+
+        if (!direcciones.isEmpty()) {
+            direccionesItems.addAll(direcciones);
+        }
+
+        direccion_input.setItems(direccionesItems);
+
+
+
+        List<Object> facturas = em.select(Factura.class, -1, "");
+
+        ObservableList facturasItems = FXCollections.observableArrayList();
+
+        if (!facturas.isEmpty()) {
+            facturasItems.addAll(facturas);
+        }
+
+        factura_input.setItems(facturasItems);
+
+
+
+
+
+        rutaViews = new ArrayList<RutaView>();
+
+        button_newRuta.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AnchorPane rutaPane = new AnchorPane();
+
+
+                RutaView rutaView = new RutaView(rutaPane);
+                rutaViews.add(rutaView);
+            }
+        });
         back_button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -86,17 +136,23 @@ public class CreateController extends ViewController {
 
                 String[] fields = {peso_empaquetado};
 
+                if (!rutaViews.isEmpty()) {
+                    for (RutaView rutaView : rutaViews) {
+
+                    }
+                }
+
                 save_button.setDisable(true);
-//
-//                if (ViewUtils.validateFields(fields) && cliente != null) {
+
+                if (ViewUtils.validateFields(fields) && direccion != null && factura != null && cliente != null) {
 //                    String[] parameters = new String[]{cantidad, montoTotal, String.valueOf(cliente.getId()), selectedDate.toString()};
 //
 //                    em.executeNativeQuery("INSERT INTO Operacion(numero, monto_total, usuario_id, fecha) VALUES(?1,?2,?3,?4)", parameters);
-//
-//                    back(event);
-//                } else {
-//                    error_label.setText("Por favor, rellena los campos obligatorios");
-//                }
+
+                    back(event);
+                } else {
+                    error_label.setText("Por favor, rellena los campos obligatorios");
+                }
 
 
 
@@ -107,5 +163,128 @@ public class CreateController extends ViewController {
 
     private void back(ActionEvent event) {
         goToWindow("src/main/resources/Admin/Operacion/List.fxml", event);
+    }
+
+    class RutaView {
+
+
+        public ObservableList tipos;
+
+        public Label tipoLabel;
+        public ComboBox tipoSelector;
+        public Label origenLabel;
+        public TextField origen;
+        public Label destinoLabel;
+        public TextField destino;
+        public Label salidaLabel;
+        public DatePicker salida;
+        public Label llegadaLabel;
+        public DatePicker llegada;
+        public Button eliminarRuta;
+
+
+
+
+        RutaView (Pane rutaPane) {
+            int index = accordion_rutas.getPanes().size();
+            tipos = FXCollections.observableArrayList(new String[]{
+                    "Maritima",
+                    "Aerea",
+                    "Terrestre"
+            });
+
+            tipoLabel = new Label("Tipo de Ruta     *");
+            tipoLabel.setLayoutX(50);
+            tipoLabel.setLayoutY(25);
+            rutaPane.getChildren().add(tipoLabel);
+
+            tipoSelector = new ComboBox();
+            tipoSelector.setItems(tipos);
+            tipoSelector.setLayoutX(50);
+            tipoSelector.setLayoutY(60);
+            tipoSelector.setId("tipoRuta");
+
+            tipoSelector.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    rutaPane.lookupAll("#datosRuta");
+                    AnchorPane datosRuta = new AnchorPane();
+                    datosRuta.setId("datosRuta");
+
+
+                    rutaPane.getChildren().add(datosRuta);
+
+                }
+            });
+            rutaPane.getChildren().add(tipoSelector);
+
+
+
+            origenLabel = new Label("Origen     *");
+            origenLabel.setLayoutX(190);
+            origenLabel.setLayoutY(25);
+            rutaPane.getChildren().add(origenLabel);
+            origen = new TextField();
+            origen.setLayoutX(190);
+            origen.setLayoutY(60);
+            ViewUtils.setDecimalBehaviour(origen);
+            origen.setId("origen");
+            rutaPane.getChildren().add(origen);
+
+            destinoLabel = new Label("Destino     *");
+            destinoLabel.setLayoutX(380);
+            destinoLabel.setLayoutY(25);
+            rutaPane.getChildren().add(destinoLabel);
+            destino = new TextField();
+            destino.setLayoutX(380);
+            destino.setLayoutY(60);
+            ViewUtils.setDecimalBehaviour(destino);
+            destino.setId("destino");
+            rutaPane.getChildren().add(destino);
+
+
+
+            salidaLabel = new Label("Salida     *");
+            salidaLabel.setLayoutX(50);
+            salidaLabel.setLayoutY(100);
+            rutaPane.getChildren().add(salidaLabel);
+            salida = new DatePicker(LocalDate.now());
+            salida.setLayoutX(50);
+            salida.setLayoutY(135);
+            salida.setPrefWidth(120);
+            salida.setId("salida");
+            rutaPane.getChildren().add(salida);
+
+            llegadaLabel = new Label("Llegada");
+            llegadaLabel.setLayoutX(190);
+            llegadaLabel.setLayoutY(100);
+            rutaPane.getChildren().add(llegadaLabel);
+            llegada = new DatePicker(LocalDate.now());
+            llegada.setLayoutX(190);
+            llegada.setLayoutY(135);
+            llegada.setPrefWidth(120);
+            llegada.setId("llegada");
+            rutaPane.getChildren().add(llegada);
+
+
+            TitledPane pane = new TitledPane("Ruta " + (index + 1), rutaPane);
+            pane.setExpanded(true);
+            accordion_rutas.getPanes().add(pane);
+
+
+
+            eliminarRuta = new Button("Eliminar");
+            eliminarRuta.setLayoutX(550);
+            eliminarRuta.setLayoutY(25);
+            eliminarRuta.setTextFill(Color.RED);
+            eliminarRuta.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    accordion_rutas.getPanes().remove(pane);
+                    rutaViews.remove(index);
+                }
+            });
+            rutaPane.getChildren().add(eliminarRuta);
+        }
     }
 }

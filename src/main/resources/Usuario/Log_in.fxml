@@ -16,6 +16,11 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #0E185F;" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="103.0" fitWidth="94.0" layoutX="202.0" layoutY="75.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/logo.png" />
+               </image>
+            </ImageView>
             <Text fill="WHITE" layoutX="54.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡Bienvenido a Gestion Logistica, Tu socio confiable en envíos rápidos y seguros!" wrappingWidth="241.830078125">
                <font>
                   <Font name="Calibri" size="27.0" />
@@ -26,31 +31,13 @@
                   <Font name="Calibri Bold" size="36.0" />
                </font>
             </Text>
-            <ImageView fitHeight="103.0" fitWidth="94.0" layoutX="202.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../img/logo.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </left>
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="510.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="nickname" layoutX="125.0" layoutY="238.0" promptText="User Name" style="-fx-background-color: trasparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="password" layoutX="125.0" layoutY="298.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #0E185F;" text="Iniciar Seccion" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
-               <font>
-                  <Font name="Calibri Bold" size="15.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <Blend />
-               </effect>
-            </Button>
-            <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="144.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="84.0" layoutX="158.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/Users.png" />
                </image>
@@ -65,6 +52,19 @@
                   <Image url="@../../../../img/Password.png" />
                </image>
             </ImageView>
+            <TextField fx:id="nickname" layoutX="125.0" layoutY="238.0" promptText="User Name" style="-fx-background-color: #ffffff; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="password" layoutX="125.0" layoutY="298.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #0E185F;" text="Iniciar Seccion" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
    </right>

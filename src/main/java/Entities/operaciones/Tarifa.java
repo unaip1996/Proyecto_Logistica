@@ -20,11 +20,14 @@ public class Tarifa implements SerializableEntity {
     @Id
     @GeneratedValue
     private int id;
+
+    private String nombre;
+
     private double pesoKg;
-    private double anchuraMn;
-    private double alturaMn;
-    private double diagonalMm;
+
     private double precio;
+
+    private String tamaño;
 
     public Tarifa() {
     }
@@ -32,18 +35,18 @@ public class Tarifa implements SerializableEntity {
     /**
      * Constructor con parametros
      *
+     * @param nombre
+     * @param tamaño
      * @param pesoKg
-     * @param anchuraMn
-     * @param alturaMn
-     * @param diagonalMm
      * @param precio
      */
-    public Tarifa(double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio) {
+    public Tarifa(int id, String nombre, String tamaño, double pesoKg, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tamaño = tamaño;
         this.pesoKg = pesoKg;
-        this.anchuraMn = anchuraMn;
-        this.alturaMn = alturaMn;
-        this.diagonalMm = diagonalMm;
         this.precio = precio;
+
     }
 
     // getters / setters
@@ -64,28 +67,20 @@ public class Tarifa implements SerializableEntity {
         this.pesoKg = pesoKg;
     }
 
-    public double getAnchuraMn() {
-        return anchuraMn;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setAnchuraMn(double anchuraMn) {
-        this.anchuraMn = anchuraMn;
+    public void setNombre(String anchuraMn) {
+        this.nombre = nombre;
     }
 
-    public double getAlturaMn() {
-        return alturaMn;
+    public String getTamaño() {
+        return tamaño;
     }
 
-    public void setAlturaMn(double alturaMn) {
-        this.alturaMn = alturaMn;
-    }
-
-    public double getDiagonalMm() {
-        return diagonalMm;
-    }
-
-    public void setDiagonalMm(double diagonalMm) {
-        this.diagonalMm = diagonalMm;
+    public void settamaño(String tamaño) {
+        this.tamaño = tamaño;
     }
 
     public double getPrecio() {

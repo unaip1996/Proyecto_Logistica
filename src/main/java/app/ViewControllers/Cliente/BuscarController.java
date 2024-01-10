@@ -45,7 +45,7 @@ public class BuscarController extends ViewController {
        button_logout.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               goToWindow("src/main/resources/Usuario/Log_in.fxml", event);
+               goToWindow("src/main/resources/Log_in.fxml", event);
            }
 
        });
@@ -53,21 +53,21 @@ public class BuscarController extends ViewController {
        button_cotizar.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               goToWindow("src/main/resources/Usuario/Cotizar.fxml", event);
+               goToWindow("src/main/resources/Cliente/Usuario/Cotizar.fxml", event);
            }
        });
 
         button_facturas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Usuario/Factura.fxml", event);
+                goToWindow("src/main/resources/Cliente/Usuario/Factura.fxml", event);
             }
         });
 
         button_cuenta.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Usuario/MiCuenta.fxml", event);
+                goToWindow("src/main/resources/Cliente/Usuario/MiCuenta.fxml", event);
             }
         });
     }

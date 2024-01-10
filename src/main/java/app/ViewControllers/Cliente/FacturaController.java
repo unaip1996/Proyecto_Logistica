@@ -34,21 +34,21 @@ public class FacturaController extends ViewController {
         button_buscar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Usuario/Buscar.fxml", event);
+                goToWindow("src/main/resources/Cliente/Usuario/Buscar.fxml", event);
             }
         });
 
         button_cotizar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Usuario/Cotizar.fxml", event);
+                goToWindow("src/main/resources/Cliente/Usuario/Cotizar.fxml", event);
             }
         });
 
         button_cuenta.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                goToWindow("src/main/resources/Usuario/MiCuenta.fxml", event);
+                goToWindow("src/main/resources/Cliente/Usuario/MiCuenta.fxml", event);
             }
         });
     }

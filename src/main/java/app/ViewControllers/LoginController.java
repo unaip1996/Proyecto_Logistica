@@ -1,6 +1,6 @@
 package app.ViewControllers;
 
-import Entities.Usuarios.Cliente;
+import Entities.Usuarios.Usuario;
 import Util.EntityManager;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -52,42 +52,32 @@ public class LoginController implements Initializable {
                 String nick = nickname.getText();
                 String pass = password.getText();
 
-                String[] fields = {nick, pass };
+                Usuario usuario = login(nick, pass);
 
-
-
-                    if (login()){
-                        button_login.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                goToWindow("src/main/resources/Usuario/Buscar.fxml", event);
-                            }
-                        });
+                if (usuario != null) {
+                    if (usuario.getType_user() == Usuario.ADMINTYPE) {
+                        goToWindow("src/main/resources/Admin/Usuario/List.fxml", event);
+                    } else if (usuario.getType_user() == Usuario.USERTYPE) {
+                        goToWindow("src/main/resources/Cliente/Usuario/Buscar.fxml", event);
                     }
-                    else if (nickname.getText().isEmpty() && password.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Por favor ingrese sus datos de usuario ");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario o Contrasena incorrectos");
-                    }
+                } else if (nickname.getText().isEmpty() && password.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese sus datos de usuario ");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o Contrasena incorrectos");
+                }
 
             }
         });
 
     }
 
-    private boolean login() {
-        boolean exists = false;
+    private Usuario login(String username, String password) {
 
-        String nick = nickname.getText();
-        String pass = password.getText();
+        String[] parameters = {username, password};
+        Usuario usuario;
+        usuario = (Usuario) em.selectOne(Usuario.class, "WHERE (nick = ?1 OR mail = ?1) AND password = ?2", parameters);
 
-        String[] parameters = {nick, pass};
-        Cliente cliente;
-        cliente = (Cliente) em.selectOne(Cliente.class, "WHERE nick = ?1 AND password = ?2", parameters);
-
-        exists = cliente != null;
-
-        return exists;
+        return usuario;
 
     }
 

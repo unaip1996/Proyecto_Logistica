@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="103.0" fitWidth="94.0" layoutX="202.0" layoutY="75.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/logo.png" />
+                  <Image url="@../../../img/logo.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="54.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡Bienvenido a Gestion Logistica, Tu socio confiable en envíos rápidos y seguros!" wrappingWidth="241.830078125">
@@ -39,22 +39,22 @@
          <children>
             <ImageView fitHeight="83.0" fitWidth="84.0" layoutX="158.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/Users.png" />
+                  <Image url="@../../../img/Users.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="93.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/User.png" />
+                  <Image url="@../../../img/User.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="93.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/Password.png" />
+                  <Image url="@../../../img/Password.png" />
                </image>
             </ImageView>
-            <TextField fx:id="nickname" layoutX="125.0" layoutY="238.0" promptText="User Name" style="-fx-background-color: #ffffff; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="password" layoutX="125.0" layoutY="298.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #0E185F;" text="Iniciar Seccion" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
+            <TextField fx:id="nickname" layoutX="92.0" layoutY="239.0" prefHeight="27.0" prefWidth="170.0" promptText="User Name" style="-fx-background-color: #ffffff; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="password" layoutX="92.0" layoutY="299.0" prefWidth="170.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E185F; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: #0E185F;" text="Iniciar Sesión" textAlignment="CENTER" textFill="#00ffdd" textOverrun="CLIP">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>

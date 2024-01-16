@@ -1,6 +1,5 @@
 package Util;
 
-import Util.LogHandler;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -21,7 +20,7 @@ public class DB {
         try {
             sessionFactory =
                     new MetadataSources(registry)
-//                            .addFile("conf/hibernate.properties")
+//                            .addFile("hibernate.properties")
                             .buildMetadata()
                             .buildSessionFactory();
 //            sessionFactory = new Configuration().addAnnotatedClass(Usuario.class).configure().buildSessionFactory();

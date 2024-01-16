@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -18,7 +16,7 @@
    <left>
       <AnchorPane fx:id="center" prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="276.0" layoutY="38.0" text="Editar Cliente" textFill="#0e185f">
+            <Label layoutX="277.0" layoutY="37.0" text="Editar Usuario" textFill="#0e185f">
 ">
                <font>
                   <Font size="24.0" />

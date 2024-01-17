@@ -16,7 +16,7 @@
    <left>
       <AnchorPane prefHeight="425.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="309.0" layoutY="38.0" text="Usuarios" textFill="#0e185f">
+            <Label layoutX="306.0" layoutY="38.0" text="Usuarios" textFill="#0e185f">
                <font>
                   <Font size="24.0" />
                </font>
@@ -31,7 +31,7 @@
               </columns>
             </TableView>
              <Pagination fx:id="pagination" layoutX="82.0" layoutY="346.0" prefHeight="53.0" prefWidth="538.0" />
-             <Button fx:id="newItem" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nuevo puerto" />
+             <Button fx:id="newItem" layoutX="82.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Nuevo usuario" />
              <Button fx:id="deleteItems" layoutX="554.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Eliminar" />
 
 <!--            <FontAwesomeIconView glyphName="PENCIL" layoutX="494.0" layoutY="59.0" />-->

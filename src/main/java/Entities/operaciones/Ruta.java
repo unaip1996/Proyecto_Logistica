@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Ruta")
-public abstract class Ruta implements SerializableEntity {
+public class Ruta implements SerializableEntity {
 
     @Id
     @GeneratedValue

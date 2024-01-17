@@ -1,11 +1,12 @@
 package app.ViewControllers.Admin.Operacion;
 
 import Entities.Usuarios.Cliente;
-import Entities.operaciones.Direccion;
-import Entities.operaciones.Factura;
+import Entities.operaciones.*;
 import Util.EntityManager;
 import Util.ViewUtils;
 import app.ViewControllers.ViewController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -88,17 +89,18 @@ public class CreateController extends ViewController {
 
         cliente_input.setItems(comboboxItems);
 
+        cliente_input.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Cliente cliente = cliente_input.getValue();
+
+                setDirecciones(cliente);
+            }
+        });
 
 
-        List<Object> direcciones = em.select(Direccion.class, -1, "");
 
-        ObservableList direccionesItems = FXCollections.observableArrayList();
-
-        if (!direcciones.isEmpty()) {
-            direccionesItems.addAll(direcciones);
-        }
-
-        direccion_input.setItems(direccionesItems);
+        setDirecciones(null);
 
 
 
@@ -124,7 +126,7 @@ public class CreateController extends ViewController {
 
                 scrollContainer.setPrefHeight(scrollContainer.getHeight() + TITLEDPANE_HEIGHT);
 
-                RutaView rutaView = new RutaView(rutaPane);
+                RutaView rutaView = new RutaView(rutaPane, new Ruta());
                 rutaViews.add(rutaView);
             }
         });
@@ -169,6 +171,26 @@ public class CreateController extends ViewController {
             }
         });
     }
+    private void setDirecciones(Cliente cliente) {
+        String query = "";
+        String[] parameters;
+        if (cliente == null){
+            query = "";
+            parameters = new String[0];
+        }else {
+            query = "WHERE usuario_id = ?1";
+            parameters = new String[]{String.valueOf(cliente.getId())};
+        }
+        List<Object> direcciones = em.select(Direccion.class, -1, query, parameters);
+
+        ObservableList direccionesItems = FXCollections.observableArrayList();
+
+        if (!direcciones.isEmpty()) {
+            direccionesItems.addAll(direcciones);
+        }
+
+        direccion_input.setItems(direccionesItems);
+    }
 
     private void back(ActionEvent event) {
         goToWindow("src/main/resources/Admin/Operacion/List.fxml", event);
@@ -176,7 +198,8 @@ public class CreateController extends ViewController {
 
     class RutaView {
 
-        public final double PANE_HEIGHT = 170;
+        public Ruta ruta;
+        public final double PANE_HEIGHT = 340;
 
         public boolean isPaneOpen;
         public ObservableList tipos;
@@ -196,19 +219,43 @@ public class CreateController extends ViewController {
         public ComboBox aeropuertoOrigen;
         public Label aeropuertoDestinoLabel;
         public ComboBox aeropuertoDestino;
+        public Label idVueloLabel;
+
+        public TextField idVuelo;
+
+        public Label aerolineaLabel;
+        public TextField aerolinea;
+
+
+        public Label puertoOrigenLabel;
+        public ComboBox puertoOrigen;
+        public Label puertoDestinoLabel;
+        public ComboBox puertoDestino;
+        public Label idContenedorLabel;
+
+        public TextField idContenedor;
+
+        public Label nombreBarcoLabel;
+        public TextField nombreBarco;
+
         public Label vehiculoLabel;
         public TextField vehiculo;
         public Label matriculaLabel;
         public TextField matricula;
 
+        public ObservableList aeropuertos;
+
+        public ObservableList puertos;
+        public AnchorPane datosRuta;
 
 
+        RutaView (Pane rutaPane, Ruta ruta) {
+            this.ruta = ruta;
 
-        RutaView (Pane rutaPane) {
             isPaneOpen = false;
             int index = accordion_rutas.getPanes().size();
             tipos = FXCollections.observableArrayList(new String[]{
-                    "Maritima",
+                    "Marítima",
                     "Aerea",
                     "Terrestre"
             });
@@ -227,40 +274,169 @@ public class CreateController extends ViewController {
             tipoSelector.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    rutaPane.lookupAll("#datosRuta");
-                    AnchorPane datosRuta = new AnchorPane();
-                    datosRuta.setId("datosRuta");
-                    datosRuta.setLayoutX(50);
-                    datosRuta.setLayoutY(175);
-                    datosRuta.setPrefWidth(600);
+                    if (datosRuta == null) {
+                        datosRuta = new AnchorPane();
+                        datosRuta.setId("datosRuta");
 
-                    datosRuta.setStyle("-fx-background-color: #0356fc");
-
-
-                    matriculaLabel = new Label("Matrícula     *");
-                    matriculaLabel.setLayoutX(0);
-                    matriculaLabel.setLayoutY(25);
-                    datosRuta.getChildren().add(matriculaLabel);
-                    matricula = new TextField();
-                    matricula.setLayoutX(0);
-                    matricula.setLayoutY(60);
-                    ViewUtils.setDecimalBehaviour(matricula);
-                    matricula.setId("aeropuertoOrigen");
-                    datosRuta.getChildren().add(matricula);
+                        datosRuta.setLayoutX(50);
+                        datosRuta.setLayoutY(175);
+                        datosRuta.setPrefWidth(550);
+                        rutaPane.getChildren().add(datosRuta);
+                    } else {
+                        datosRuta.getChildren().clear();
+                    }
 
 
-                    //aeropuertoOrigenLabel = new Label("Aeropuerto Origen     *");
-                    //aeropuertoOrigenLabel.setLayoutX(50);
-                    //aeropuertoOrigenLabel.setLayoutY(25);
-                    //datosRuta.getChildren().add(origenLabel);
-                    //aeropuertoOrigen = new TextField();
-                    //aeropuertoOrigen.setLayoutX(50);
-                    //aeropuertoOrigen.setLayoutY(60);
-                    //ViewUtils.setDecimalBehaviour(origen);
-                    //aeropuertoOrigen.setId("aeropuertoOrigen");
-                    //datosRuta.getChildren().add(origen);
+                    String tipoRuta = (String) tipoSelector.getValue();
 
-                    rutaPane.getChildren().add(datosRuta);
+
+                    switch (tipoRuta) {
+                        case "Marítima":
+
+                            puertos = FXCollections.observableArrayList();
+                            List<Object> puertosList = em.select(Puerto.class, -1, " ORDER BY nombre DESC");
+
+                            if (!puertosList.isEmpty()) {
+                                puertos.addAll(puertosList);
+                            }
+
+
+                            puertoOrigenLabel = new Label("Puerto Origen     *");
+                            puertoOrigenLabel.setLayoutX(0);
+                            puertoOrigenLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(puertoOrigenLabel);
+                            puertoOrigen = new ComboBox<Puerto>();
+                            puertoOrigen.setLayoutX(0);
+                            puertoOrigen.setLayoutY(60);
+                            puertoOrigen.setItems(puertos);
+                            puertoOrigen.setId("puertoOrigen");
+                            puertoOrigen.setPrefWidth(150);
+                            datosRuta.getChildren().add(puertoOrigen);
+
+
+                            puertoDestinoLabel = new Label("Puerto Destino     *");
+                            puertoDestinoLabel.setLayoutX(200);
+                            puertoDestinoLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(puertoDestinoLabel);
+                            puertoDestino = new ComboBox<Puerto>();
+                            puertoDestino.setLayoutX(200);
+                            puertoDestino.setLayoutY(60);
+                            puertoDestino.setItems(puertos);
+                            puertoDestino.setId("puertoDestino");
+                            puertoDestino.setPrefWidth(150);
+                            datosRuta.getChildren().add(puertoDestino);
+
+
+                            nombreBarcoLabel = new Label("Nombre del barco     *");
+                            nombreBarcoLabel.setLayoutX(400);
+                            nombreBarcoLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(nombreBarcoLabel);
+                            nombreBarco = new TextField();
+                            nombreBarco.setLayoutX(400);
+                            nombreBarco.setLayoutY(60);
+                            ViewUtils.setDecimalBehaviour(nombreBarco);
+                            nombreBarco.setId("nombreBarco");
+                            datosRuta.getChildren().add(nombreBarco);
+
+                            idContenedorLabel = new Label("Identificador del barco     *");
+                            idContenedorLabel.setLayoutX(0);
+                            idContenedorLabel.setLayoutY(115);
+                            datosRuta.getChildren().add(idContenedorLabel);
+                            idContenedor = new TextField();
+                            idContenedor.setLayoutX(0);
+                            idContenedor.setLayoutY(150);
+                            ViewUtils.setDecimalBehaviour(idContenedor);
+                            idContenedor.setId("idContenedor");
+                            datosRuta.getChildren().add(idContenedor);
+
+                            break;
+                        case "Aerea":
+
+                            aeropuertos = FXCollections.observableArrayList();
+                            List<Object> aeropuertosList = em.select(Aeropuerto.class, -1, " ORDER BY nombre DESC");
+
+                            if (!aeropuertosList.isEmpty()) {
+                                aeropuertos.addAll(aeropuertosList);
+                            }
+
+
+                            aeropuertoOrigenLabel = new Label("Aeropuerto Origen     *");
+                            aeropuertoOrigenLabel.setLayoutX(0);
+                            aeropuertoOrigenLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(aeropuertoOrigenLabel);
+                            aeropuertoOrigen = new ComboBox<Aeropuerto>();
+                            aeropuertoOrigen.setLayoutX(0);
+                            aeropuertoOrigen.setLayoutY(60);
+                            aeropuertoOrigen.setItems(aeropuertos);
+                            aeropuertoOrigen.setId("aeropuertoOrigen");
+                            aeropuertoOrigen.setPrefWidth(150);
+                            datosRuta.getChildren().add(aeropuertoOrigen);
+
+
+                            aeropuertoDestinoLabel = new Label("Aeropuerto Destino     *");
+                            aeropuertoDestinoLabel.setLayoutX(200);
+                            aeropuertoDestinoLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(aeropuertoDestinoLabel);
+                            aeropuertoDestino = new ComboBox<Aeropuerto>();
+                            aeropuertoDestino.setLayoutX(200);
+                            aeropuertoDestino.setLayoutY(60);
+                            aeropuertoDestino.setItems(aeropuertos);
+                            aeropuertoDestino.setId("aeropuertoDestino");
+                            aeropuertoDestino.setPrefWidth(150);
+                            datosRuta.getChildren().add(aeropuertoDestino);
+
+
+                            aerolineaLabel = new Label("Aerolinea     *");
+                            aerolineaLabel.setLayoutX(400);
+                            aerolineaLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(aerolineaLabel);
+                            aerolinea = new TextField();
+                            aerolinea.setLayoutX(400);
+                            aerolinea.setLayoutY(60);
+                            ViewUtils.setDecimalBehaviour(aerolinea);
+                            aerolinea.setId("aerolinea");
+                            datosRuta.getChildren().add(aerolinea);
+
+                            idVueloLabel = new Label("Identificador del vuelo     *");
+                            idVueloLabel.setLayoutX(0);
+                            idVueloLabel.setLayoutY(115);
+                            datosRuta.getChildren().add(idVueloLabel);
+                            idVuelo = new TextField();
+                            idVuelo.setLayoutX(0);
+                            idVuelo.setLayoutY(150);
+                            ViewUtils.setDecimalBehaviour(idVuelo);
+                            idVuelo.setId("idVuelo");
+                            datosRuta.getChildren().add(idVuelo);
+
+
+                            break;
+                        case "Terrestre":
+
+                            vehiculoLabel = new Label("Vehículo     *");
+                            vehiculoLabel.setLayoutX(0);
+                            vehiculoLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(vehiculoLabel);
+                            vehiculo = new TextField();
+                            vehiculo.setLayoutX(0);
+                            vehiculo.setLayoutY(60);
+                            ViewUtils.setDecimalBehaviour(vehiculo);
+                            vehiculo.setId("vehiculo");
+                            datosRuta.getChildren().add(vehiculo);
+
+
+                            matriculaLabel = new Label("Matrícula     *");
+                            matriculaLabel.setLayoutX(200);
+                            matriculaLabel.setLayoutY(25);
+                            datosRuta.getChildren().add(matriculaLabel);
+                            matricula = new TextField();
+                            matricula.setLayoutX(200);
+                            matricula.setLayoutY(60);
+                            ViewUtils.setDecimalBehaviour(matricula);
+                            matricula.setId("matricula");
+                            datosRuta.getChildren().add(matricula);
+
+                            break;
+                    }
 
                 }
             });
@@ -317,15 +493,18 @@ public class CreateController extends ViewController {
 
             TitledPane pane = new TitledPane("Ruta " + (index + 1), rutaPane);
             pane.setExpanded(true);
-            pane.setOnMouseClicked(new EventHandler<Event>() {
+
+            pane.expandedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
-                public void handle(Event keyEvent) {
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean isOpen) {
+                    System.out.println(String.valueOf(isOpen));
+
                     double newHeight = scrollContainer.getPrefHeight();
                     newHeight = isPaneOpen ? newHeight - PANE_HEIGHT : newHeight + PANE_HEIGHT;
 
                     scrollContainer.setPrefHeight(newHeight);
 
-                    isPaneOpen = !isPaneOpen;
+                    isPaneOpen = isOpen;
                 }
             });
             accordion_rutas.getPanes().add(pane);

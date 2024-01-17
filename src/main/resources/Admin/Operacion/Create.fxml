@@ -19,7 +19,7 @@
          <children>
             <ScrollPane layoutX="19.0" layoutY="77.0" prefHeight="196.0" prefWidth="668.0">
               <content>
-                <AnchorPane fx:id="scrollContainer" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="650.0">
+                <AnchorPane fx:id="scrollContainer" minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="650.0">
                      <children>
                         <Label layoutX="232.0" layoutY="40.0" text="Usuario" />
                         <Label layoutX="50.0" layoutY="144.0" text="Peso del empaquetado     *" />
@@ -30,7 +30,7 @@
                         <ComboBox fx:id="direccion_input" layoutX="439.0" layoutY="76.0" prefWidth="150.0" />
                         <TextField fx:id="peso_input" layoutX="50.0" layoutY="184.0" prefHeight="25.0" prefWidth="86.0" />
                         <Button fx:id="button_newRuta" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" text="Añadir Ruta" />
-                        <Accordion fx:id="accordion_rutas" layoutX="14.0" layoutY="285.0" prefHeight="206.0" prefWidth="631.0" />
+                        <Accordion fx:id="accordion_rutas" layoutX="14.0" layoutY="285.0" prefWidth="631.0" />
                      </children>
                   </AnchorPane>
               </content>

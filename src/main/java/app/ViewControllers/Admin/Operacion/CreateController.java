@@ -9,10 +9,14 @@ import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -34,6 +38,9 @@ public class CreateController extends ViewController {
     public AnchorPane center;
 
     @FXML
+    public AnchorPane scrollContainer;
+
+    @FXML
     public ComboBox<Direccion> direccion_input;
 
     @FXML
@@ -52,6 +59,8 @@ public class CreateController extends ViewController {
     public Button button_newRuta;
 
     private List<RutaView> rutaViews;
+
+    public double TITLEDPANE_HEIGHT = 30;
 
     /**
      * Called to initialize a controller after its root element has been
@@ -105,8 +114,6 @@ public class CreateController extends ViewController {
 
 
 
-
-
         rutaViews = new ArrayList<RutaView>();
 
         button_newRuta.setOnAction(new EventHandler<ActionEvent>() {
@@ -114,6 +121,8 @@ public class CreateController extends ViewController {
             public void handle(ActionEvent event) {
                 AnchorPane rutaPane = new AnchorPane();
 
+
+                scrollContainer.setPrefHeight(scrollContainer.getHeight() + TITLEDPANE_HEIGHT);
 
                 RutaView rutaView = new RutaView(rutaPane);
                 rutaViews.add(rutaView);
@@ -167,7 +176,9 @@ public class CreateController extends ViewController {
 
     class RutaView {
 
+        public final double PANE_HEIGHT = 170;
 
+        public boolean isPaneOpen;
         public ObservableList tipos;
 
         public Label tipoLabel;
@@ -181,11 +192,20 @@ public class CreateController extends ViewController {
         public Label llegadaLabel;
         public DatePicker llegada;
         public Button eliminarRuta;
+        public Label aeropuertoOrigenLabel;
+        public ComboBox aeropuertoOrigen;
+        public Label aeropuertoDestinoLabel;
+        public ComboBox aeropuertoDestino;
+        public Label vehiculoLabel;
+        public TextField vehiculo;
+        public Label matriculaLabel;
+        public TextField matricula;
 
 
 
 
         RutaView (Pane rutaPane) {
+            isPaneOpen = false;
             int index = accordion_rutas.getPanes().size();
             tipos = FXCollections.observableArrayList(new String[]{
                     "Maritima",
@@ -210,7 +230,35 @@ public class CreateController extends ViewController {
                     rutaPane.lookupAll("#datosRuta");
                     AnchorPane datosRuta = new AnchorPane();
                     datosRuta.setId("datosRuta");
+                    datosRuta.setLayoutX(50);
+                    datosRuta.setLayoutY(175);
+                    datosRuta.setPrefWidth(600);
 
+                    datosRuta.setStyle("-fx-background-color: #0356fc");
+
+
+                    matriculaLabel = new Label("Matrícula     *");
+                    matriculaLabel.setLayoutX(0);
+                    matriculaLabel.setLayoutY(25);
+                    datosRuta.getChildren().add(matriculaLabel);
+                    matricula = new TextField();
+                    matricula.setLayoutX(0);
+                    matricula.setLayoutY(60);
+                    ViewUtils.setDecimalBehaviour(matricula);
+                    matricula.setId("aeropuertoOrigen");
+                    datosRuta.getChildren().add(matricula);
+
+
+                    //aeropuertoOrigenLabel = new Label("Aeropuerto Origen     *");
+                    //aeropuertoOrigenLabel.setLayoutX(50);
+                    //aeropuertoOrigenLabel.setLayoutY(25);
+                    //datosRuta.getChildren().add(origenLabel);
+                    //aeropuertoOrigen = new TextField();
+                    //aeropuertoOrigen.setLayoutX(50);
+                    //aeropuertoOrigen.setLayoutY(60);
+                    //ViewUtils.setDecimalBehaviour(origen);
+                    //aeropuertoOrigen.setId("aeropuertoOrigen");
+                    //datosRuta.getChildren().add(origen);
 
                     rutaPane.getChildren().add(datosRuta);
 
@@ -269,6 +317,17 @@ public class CreateController extends ViewController {
 
             TitledPane pane = new TitledPane("Ruta " + (index + 1), rutaPane);
             pane.setExpanded(true);
+            pane.setOnMouseClicked(new EventHandler<Event>() {
+                @Override
+                public void handle(Event keyEvent) {
+                    double newHeight = scrollContainer.getPrefHeight();
+                    newHeight = isPaneOpen ? newHeight - PANE_HEIGHT : newHeight + PANE_HEIGHT;
+
+                    scrollContainer.setPrefHeight(newHeight);
+
+                    isPaneOpen = !isPaneOpen;
+                }
+            });
             accordion_rutas.getPanes().add(pane);
 
 
@@ -282,6 +341,8 @@ public class CreateController extends ViewController {
                 public void handle(ActionEvent event) {
                     accordion_rutas.getPanes().remove(pane);
                     rutaViews.remove(index);
+
+                    scrollContainer.setPrefHeight(scrollContainer.getHeight() - (TITLEDPANE_HEIGHT + PANE_HEIGHT));
                 }
             });
             rutaPane.getChildren().add(eliminarRuta);

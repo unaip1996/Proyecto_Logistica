@@ -103,5 +103,12 @@ public class Factura implements SerializableEntity { // Definición de la clase 
     public void setMontoTotal(double montoTotal) {
         this.montoTotal = montoTotal;
     }
+
+    @Override
+    public String toString() {
+        return fecha +
+                ", " + cliente +
+                ", " + montoTotal;
+    }
 }
 

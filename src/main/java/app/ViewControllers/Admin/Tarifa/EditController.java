@@ -62,8 +62,8 @@ public class EditController extends ViewController {
         nombre_input.setText(ListController.selectedItem.getNombre());
         precio_input.setText(String.valueOf(ListController.selectedItem.getPrecio()));
         peso_input.setText(String.valueOf(ListController.selectedItem.getPesoKg()));
-        anchura_input.setText(String.valueOf(ListController.selectedItem.getAnchuraMn()));
-        altura_input.setText(String.valueOf(ListController.selectedItem.getAlturaMn()));
+        anchura_input.setText(String.valueOf(ListController.selectedItem.getAnchuraMm()));
+        altura_input.setText(String.valueOf(ListController.selectedItem.getAlturaMm()));
         diagonal_input.setText(String.valueOf(ListController.selectedItem.getDiagonalMm()));
         precio_input.setText(String.valueOf(ListController.selectedItem.getPrecio()));
 
@@ -91,7 +91,7 @@ public class EditController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = fields;
 
                     em.executeNativeQuery("UPDATE Tarifa SET peso=?1, anchura=?2, altura=?3, diagonal=?4, precio=?5, nombre=?6 WHERE id = ?7", parameters);

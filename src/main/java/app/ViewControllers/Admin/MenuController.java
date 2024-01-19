@@ -31,6 +31,9 @@ public class MenuController extends ViewController {
     public Button button_puertos;
 
     @FXML
+    public Button button_tarifas;
+
+    @FXML
     public Button button_usuarios;
 
     @Override
@@ -83,6 +86,13 @@ public class MenuController extends ViewController {
             @Override
             public void handle(ActionEvent event) {
                 goToWindow("src/main/resources/Admin/Puerto/List.fxml", event);
+            }
+
+        });
+        button_tarifas.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                goToWindow("src/main/resources/Admin/Tarifa/List.fxml", event);
             }
 
         });

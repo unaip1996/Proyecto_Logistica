@@ -46,7 +46,10 @@ public class ListController extends GenericListController {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Operacion, String> param) {
                 Direccion direccion = param.getValue().getDireccion();
-                String nick = direccion.getCliente() != null ? direccion.getCliente().getNick() : null;
+                String nick = null;
+                if (direccion != null) {
+                    nick = direccion.getCliente() != null ? direccion.getCliente().getNick() : null;
+                }
                 return new SimpleStringProperty(nick);
             }
         });
@@ -54,14 +57,16 @@ public class ListController extends GenericListController {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Operacion, String> param) {
                 Tarifa tarifa = param.getValue().getTarifa();
-                return new SimpleStringProperty(tarifa.getNombre());
+                String nombre = tarifa != null ? tarifa.getNombre() : null;
+                return new SimpleStringProperty(nombre);
             }
         });
         direccion.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Operacion, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Operacion, String> param) {
                 Direccion direccion = param.getValue().getDireccion();
-                return new SimpleStringProperty(direccion.toString());
+                String direccionString = direccion != null ? direccion.toString() : null;
+                return new SimpleStringProperty(direccionString);
             }
         });
 

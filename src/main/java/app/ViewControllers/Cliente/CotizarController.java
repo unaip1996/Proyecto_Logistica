@@ -1,6 +1,7 @@
 package app.ViewControllers.Cliente;
 
 import Entities.operaciones.Tarifa;
+import Util.EntityManager;
 import app.ViewControllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.List;
@@ -34,47 +36,38 @@ public class CotizarController extends ViewController implements Initializable {
     @FXML
     public ComboBox comb; //menu desplegable
     @FXML
-    public Label label;
+    public Text tarifa_label;
     @FXML
     public void Select(ActionEvent event) {
-        String s = comb.getSelectionModel().getSelectedItem().toString();
-        label.setText("Comprar "+ s + "?");
+        String s = comb.getValue().toString();
+        tarifa_label.setText("Comprar "+ s + "?");
 
     }
-    ObservableList<Tarifa> listTarifa = FXCollections.observableArrayList();
+    ObservableList listTarifa = FXCollections.observableArrayList();
 
     protected void paintData(int index) {
+        EntityManager em = new EntityManager();
+
         listTarifa = FXCollections.observableArrayList();
-        List<Object> itemList = em.select(Tarifa.class, index, "");
+        List<Object> itemList = em.select(Tarifa.class, index, "", new String[0]);
 
         if (!itemList.isEmpty()) {
-            listTarifa.addAll((Tarifa) itemList);
+            listTarifa.addAll(itemList);
         }
-
-        ObservableList<Tarifa> nuevosItems = FXCollections.observableArrayList(
-                new Tarifa(01, "Paquete S", "35 X 25 X 10 CM", 2, 3.79 ),
-                new Tarifa(02, "Paquete M", "60 X 30 X 15 CM", 3, 4.79 ),
-                new Tarifa(03, "Paquete L", "70 X 40 X 25 CM", 5, 6.79 ),
-                new Tarifa(04, "Paquete XL", "75 X 45 X 35 CM", 7, 8.49 ),
-                new Tarifa(05, "Paquete XXL", "85 X 50 X 40 CM", 8, 9.29 ),
-                new Tarifa(06, "Paquete XXXL", "90 X 55 X 45 CM", 10, 12.29 )
-        );
-        listTarifa.addAll(nuevosItems);
         table_cotizar.setItems(listTarifa);
+        comb.setItems(listTarifa);
 
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> listComb = FXCollections.observableArrayList("Paquete S","Paquete M","Paquete L","Paquete XL","Paquete XXL","Paquete XXXL");
-        comb.setItems(listComb);
 
         id.setCellValueFactory(new PropertyValueFactory<Tarifa, Integer>("id"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tarifa, String>("nombre"));
-        size.setCellValueFactory(new PropertyValueFactory<Tarifa, String>("tamaño"));
-        peso.setCellValueFactory(new PropertyValueFactory<Tarifa, Double>("PesoKg"));
-        precio.setCellValueFactory(new PropertyValueFactory<Tarifa, Double>("id"));
+        size.setCellValueFactory(new PropertyValueFactory<Tarifa, String>("dimensiones"));
+        peso.setCellValueFactory(new PropertyValueFactory<Tarifa, Double>("pesoKg"));
+        precio.setCellValueFactory(new PropertyValueFactory<Tarifa, Double>("precio"));
 
-        table_cotizar.setItems(listTarifa);
+        paintData(-1);
     }
 
 

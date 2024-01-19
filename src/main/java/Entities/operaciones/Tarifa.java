@@ -21,8 +21,8 @@ public class Tarifa implements SerializableEntity {
     @GeneratedValue
     private int id;
     private double pesoKg;
-    private double anchuraMn;
-    private double alturaMn;
+    private double anchuraMm;
+    private double alturaMm;
     private double diagonalMm;
     private double precio;
 
@@ -37,15 +37,15 @@ public class Tarifa implements SerializableEntity {
      * Constructor con parametros
      *
      * @param pesoKg
-     * @param anchuraMn
-     * @param alturaMn
+     * @param anchuraMm
+     * @param alturaMm
      * @param diagonalMm
      * @param precio
      */
-    public Tarifa(double pesoKg, double anchuraMn, double alturaMn, double diagonalMm, double precio, String nombre) {
+    public Tarifa(Double pesoKg, Double anchuraMm, Double alturaMm, Double diagonalMm, Double precio, String nombre) {
         this.pesoKg = pesoKg;
-        this.anchuraMn = anchuraMn;
-        this.alturaMn = alturaMn;
+        this.anchuraMm = anchuraMm;
+        this.alturaMm = alturaMm;
         this.diagonalMm = diagonalMm;
         this.precio = precio;
         this.nombre = nombre;
@@ -58,18 +58,18 @@ public class Tarifa implements SerializableEntity {
      * @param nombre
      * @param pesoKg
      * @param precio
-     * @param anchuraMn
-     * @param alturaMn
+     * @param anchuraMm
+     * @param alturaMm
      * @param diagonalMm
      */
 
-    public Tarifa(int id, String nombre, double pesoKg, double precio, double anchuraMn, double alturaMn, double diagonalMm) {
+    public Tarifa(int id, String nombre, Double pesoKg, Double precio, Double anchuraMm, Double alturaMm, Double diagonalMm) {
         this.id = id;
         this.nombre = nombre;
         this.pesoKg = pesoKg;
         this.precio = precio;
-        this.anchuraMn = anchuraMn;
-        this.alturaMn = alturaMn;
+        this.anchuraMm = anchuraMm;
+        this.alturaMm = alturaMm;
         this.diagonalMm = diagonalMm;
 
         this.setDimensiones();
@@ -93,20 +93,20 @@ public class Tarifa implements SerializableEntity {
         this.pesoKg = pesoKg;
     }
 
-    public double getAnchuraMn() {
-        return anchuraMn;
+    public double getAnchuraMm() {
+        return anchuraMm;
     }
 
-    public void setAnchuraMn(double anchuraMn) {
-        this.anchuraMn = anchuraMn;
+    public void setAnchuraMm(double anchuraMm) {
+        this.anchuraMm = anchuraMm;
     }
 
-    public double getAlturaMn() {
-        return alturaMn;
+    public double getAlturaMm() {
+        return alturaMm;
     }
 
-    public void setAlturaMn(double alturaMn) {
-        this.alturaMn = alturaMn;
+    public void setAlturaMm(double alturaMm) {
+        this.alturaMm = alturaMm;
     }
 
     public double getDiagonalMm() {
@@ -138,7 +138,7 @@ public class Tarifa implements SerializableEntity {
     }
 
     public void setDimensiones() {
-        this.dimensiones = alturaMn + "mm X " + anchuraMn + "mm X " + diagonalMm + "mm";
+        this.dimensiones = alturaMm + "mm X " + anchuraMm + "mm X " + diagonalMm + "mm";
     }
 
     @Override

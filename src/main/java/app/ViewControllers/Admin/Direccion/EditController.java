@@ -102,7 +102,7 @@ public class EditController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = new String[]{pais, provincia, ciudad, calle, String.valueOf(numero), String.valueOf(cp), String.valueOf(piso), puerta, esc, id};
 
                     em.executeNativeQuery("UPDATE Direccion SET pais=?1, provincia=?2, ciudad=?3, calle=?4, numero=?5, codigo_postal=?6, piso=?7, puerta=?8, esc=?9 WHERE id = ?10", parameters);

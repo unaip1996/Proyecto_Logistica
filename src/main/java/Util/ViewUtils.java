@@ -13,11 +13,31 @@ import java.util.Date;
 
 public class ViewUtils {
 
-    public static boolean validateFields(String[] fields) {
+    public static boolean validateStringFields(String[] fields) {
         boolean valid = true;
 
         for (int i = 0; i < fields.length && valid; i++) {
             valid = fields[i] != null && !fields[i].trim().isEmpty();
+        }
+
+        return valid;
+    }
+
+    public static boolean validateObjectFields(Object[] fields) {
+        boolean valid = true;
+
+        for (int i = 0; i < fields.length && valid; i++) {
+            valid = fields[i] != null;
+        }
+
+        return valid;
+    }
+
+    public static boolean validateLocaldateFields(LocalDate[] fields) {
+        boolean valid = true;
+
+        for (int i = 0; i < fields.length && valid; i++) {
+            valid = fields[i] != null;
         }
 
         return valid;

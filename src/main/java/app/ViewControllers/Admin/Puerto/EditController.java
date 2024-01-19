@@ -60,7 +60,7 @@ public class EditController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = fields;
 
                     em.executeNativeQuery("UPDATE Puerto SET nombre=?1 WHERE id = ?2", parameters);

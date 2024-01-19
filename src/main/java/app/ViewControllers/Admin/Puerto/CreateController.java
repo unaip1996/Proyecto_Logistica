@@ -53,7 +53,7 @@ public class CreateController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = fields;
 
                     em.executeNativeQuery("INSERT INTO Puerto(nombre) VALUES(?1)", parameters);

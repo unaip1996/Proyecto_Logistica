@@ -53,7 +53,7 @@ public class EditController extends ViewController {
         ViewUtils.setDecimalBehaviour(cantidad_input);
         ViewUtils.setDecimalBehaviour(montoTotal_input);
 
-        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC");
+        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC", new String[0]);
 
         ObservableList comboboxItems = FXCollections.observableArrayList();
 
@@ -88,7 +88,7 @@ public class EditController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields) && cliente != null) {
+                if (ViewUtils.validateStringFields(fields) && cliente != null) {
                     String[] parameters = new String[]{cantidad, montoTotal, String.valueOf(cliente.getId()), selectedDate.toString(), id};
 
                     em.executeNativeQuery("UPDATE Factura SET numero=?1, monto_total=?2, usuario_id=?3, fecha=?4 WHERE id = ?5", parameters);

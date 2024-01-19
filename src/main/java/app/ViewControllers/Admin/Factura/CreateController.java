@@ -53,7 +53,7 @@ public class CreateController extends ViewController {
         ViewUtils.setDecimalBehaviour(cantidad_input);
         ViewUtils.setDecimalBehaviour(montoTotal_input);
 
-        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC");
+        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC", new String[0]);
 
         ObservableList comboboxItems = FXCollections.observableArrayList();
 
@@ -83,7 +83,7 @@ public class CreateController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields) && cliente != null) {
+                if (ViewUtils.validateStringFields(fields) && cliente != null) {
                     String[] parameters = new String[]{cantidad, montoTotal, String.valueOf(cliente.getId()), selectedDate.toString()};
 
                     em.executeNativeQuery("INSERT INTO Factura(numero, monto_total, usuario_id, fecha) VALUES(?1,?2,?3,?4)", parameters);

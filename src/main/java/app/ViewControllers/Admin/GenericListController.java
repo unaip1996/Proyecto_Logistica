@@ -119,7 +119,7 @@ public abstract class GenericListController extends ViewController {
      */
     protected void paintData(int index) {
         items = FXCollections.observableArrayList();
-        List<Object> itemList = em.select(classname, index, "");
+        List<Object> itemList = em.select(classname, index, "", new String[0]);
 
         if (!itemList.isEmpty()) {
             items.addAll(itemList);

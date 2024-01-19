@@ -1,5 +1,7 @@
 package Entities.operaciones;
 
+import Entities.Usuarios.Cliente;
+import Util.EntityManager;
 import Util.SerializableEntity;
 import jakarta.persistence.*;
 
@@ -39,16 +41,46 @@ public class Operacion implements SerializableEntity {
 
     private double pesoEmpaquetado;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Cliente cliente;
+
     //Constructores
 
 
     public Operacion() {
     }
 
-    public Operacion(Tarifa tarifa, Factura factura, Direccion direccion, double pesoEmpaquetado) {
+    public Operacion(Tarifa tarifa, Factura factura, Direccion direccion, Double pesoEmpaquetado) {
         this.tarifa = tarifa;
         this.factura = factura;
         this.direccion = direccion;
+        this.pesoEmpaquetado = pesoEmpaquetado;
+    }
+
+    public Operacion(int id, Integer facturaId, Integer direccionId, Integer tarifaId, Double pesoEmpaquetado, Integer clienteId) {
+        this.id = id;
+
+        if (facturaId != null) {
+            Util.EntityManager em = new EntityManager();
+            this.factura = (Factura) em.selectOne(Factura.class, "WHERE id=?1", new Integer[]{facturaId});
+        }
+
+        if (direccionId != null) {
+            Util.EntityManager em = new EntityManager();
+            this.direccion = (Direccion) em.selectOne(Direccion.class, "WHERE id=?1", new Integer[]{direccionId});
+        }
+
+        if (tarifaId != null) {
+            Util.EntityManager em = new EntityManager();
+            this.tarifa = (Tarifa) em.selectOne(Tarifa.class, "WHERE id=?1", new Integer[]{tarifaId});
+        }
+
+        if (clienteId != null) {
+            Util.EntityManager em = new EntityManager();
+            this.cliente = (Cliente) em.selectOne(Tarifa.class, "WHERE id=?1", new Integer[]{clienteId});
+        }
+
         this.pesoEmpaquetado = pesoEmpaquetado;
     }
 
@@ -96,5 +128,13 @@ public class Operacion implements SerializableEntity {
 
     public void setPesoEmpaquetado(double pesoEmpaquetado) {
         this.pesoEmpaquetado = pesoEmpaquetado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

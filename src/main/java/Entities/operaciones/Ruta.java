@@ -21,9 +21,9 @@ public class Ruta implements SerializableEntity {
     private int id;
 
     //Constantes internas de la clase para saber el tipo de ruta que es
-    final static byte TIPO_AEREA = 0;
-    final static byte TIPO_MARITIMA = 1;
-    final static byte TIPO_TERRESTRE = 2;
+    public final static byte TIPO_AEREA = 0;
+    public final static byte TIPO_MARITIMA = 1;
+    public final static byte TIPO_TERRESTRE = 2;
 
     //Variable para el tipo; aunque podemos controlarlo por las clases hijas, puede venir bien para guardarla en BD
     protected int tipo;

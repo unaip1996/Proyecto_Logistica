@@ -10,14 +10,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -46,6 +42,9 @@ public class CreateController extends ViewController {
 
     @FXML
     public ComboBox<Factura> factura_input;
+
+    @FXML
+    public ComboBox<Tarifa> tarifa_input;
 
     @FXML
     public ComboBox<Cliente> cliente_input;
@@ -79,10 +78,11 @@ public class CreateController extends ViewController {
 
         ViewUtils.setDecimalBehaviour(peso_input);
 
-        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC");
+        List<Object> usuarios = em.select(Cliente.class, -1, " ORDER BY nick DESC", new String[0]);
 
         ObservableList comboboxItems = FXCollections.observableArrayList();
 
+        comboboxItems.add(null);
         if (!usuarios.isEmpty()) {
             comboboxItems.addAll(usuarios);
         }
@@ -92,9 +92,13 @@ public class CreateController extends ViewController {
         cliente_input.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                direccion_input.setDisable(true);
+
                 Cliente cliente = cliente_input.getValue();
 
                 setDirecciones(cliente);
+
+                direccion_input.setDisable(false);
             }
         });
 
@@ -104,7 +108,19 @@ public class CreateController extends ViewController {
 
 
 
-        List<Object> facturas = em.select(Factura.class, -1, "");
+        List<Object> tarifas = em.select(Tarifa.class, -1, "", new String[0]);
+
+        ObservableList tarifasItems = FXCollections.observableArrayList();
+
+        if (!tarifas.isEmpty()) {
+            tarifasItems.addAll(tarifas);
+        }
+
+        tarifa_input.setItems(tarifasItems);
+
+
+
+        List<Object> facturas = em.select(Factura.class, -1, "", new String[0]);
 
         ObservableList facturasItems = FXCollections.observableArrayList();
 
@@ -143,23 +159,70 @@ public class CreateController extends ViewController {
                 Direccion direccion = direccion_input.getValue();
                 Factura factura = factura_input.getValue();
                 Cliente cliente = cliente_input.getValue();
+                Tarifa tarifa = tarifa_input.getValue();
                 String peso_empaquetado = peso_input.getText();
 
-                String[] fields = {peso_empaquetado};
+                String[] string_fields = {peso_empaquetado};
+
+                Object[] object_fields = {direccion, factura, tarifa};
+
+                boolean rutasValidas = true;
+
+                ArrayList<String> rutaQueries = new ArrayList<String>();
 
                 if (!rutaViews.isEmpty()) {
-                    for (RutaView rutaView : rutaViews) {
+                    for (int i = 0; i< rutaViews.size() && rutasValidas; i++) {
+                        RutaView rutaView = rutaViews.get(i);
+                        String tipoRuta = (String) rutaView.tipoSelector.getValue();
+                        String origen = rutaView.origen.getText();
+                        String destino = rutaView.destino.getText();
+                        LocalDate salida = rutaView.salida.getValue();
+                        LocalDate llegada = rutaView.llegada.getValue();
 
+
+                        rutasValidas = ViewUtils.validateStringFields(new String[]{tipoRuta, origen, destino}) && ViewUtils.validateLocaldateFields(new LocalDate[]{salida});
+
+                        if (rutasValidas) {
+
+                            switch (rutaView.ruta.getTipo()) {
+                                case Ruta.TIPO_MARITIMA:
+
+                                    Puerto puertoOrigen = (Puerto) rutaView.puertoOrigen.getValue();
+                                    Puerto puertoDestino = (Puerto) rutaView.puertoDestino.getValue();
+                                    String nombreBarco = rutaView.nombreBarco.getText();
+                                    String idContenedor = rutaView.idContenedor.getText();
+
+                                    rutasValidas = rutasValidas && ViewUtils.validateObjectFields(new Object[]{puertoOrigen, puertoDestino}) && ViewUtils.validateStringFields(new String[]{nombreBarco, idContenedor});
+                                    break;
+                                case Ruta.TIPO_TERRESTRE:
+
+                                    String vehiculo = rutaView.vehiculo.getText();
+                                    String matricula = rutaView.matricula.getText();
+
+                                    rutasValidas = rutasValidas && ViewUtils.validateStringFields(new String[]{vehiculo, matricula});
+                                    break;
+                                case Ruta.TIPO_AEREA:
+
+                                    Aeropuerto aeropuertoOrigen = (Aeropuerto) rutaView.aeropuertoOrigen.getValue();
+                                    Aeropuerto aeropuertoDestino = (Aeropuerto) rutaView.aeropuertoDestino.getValue();
+                                    String aerolinea = rutaView.aerolinea.getText();
+                                    String idVuelo = rutaView.idVuelo.getText();
+
+                                    rutasValidas = rutasValidas && ViewUtils.validateObjectFields(new Object[]{aeropuertoOrigen, aeropuertoDestino}) && ViewUtils.validateStringFields(new String[]{aerolinea, idVuelo});
+                                    break;
+                            }
+                        }
                     }
                 }
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields) && direccion != null && factura != null && cliente != null) {
-//                    String[] parameters = new String[]{cantidad, montoTotal, String.valueOf(cliente.getId()), selectedDate.toString()};
-//
-//                    em.executeNativeQuery("INSERT INTO Operacion(numero, monto_total, usuario_id, fecha) VALUES(?1,?2,?3,?4)", parameters);
+                if (ViewUtils.validateStringFields(string_fields) && ViewUtils.validateObjectFields(object_fields) && rutasValidas) {
+                    String[] parameters = new String[]{String.valueOf(factura.getId()), String.valueOf(direccion.getId()), String.valueOf(tarifa.getId()), peso_empaquetado, String.valueOf(cliente.getId())};
 
+                    int id = em.executeNativeQueryAndSelect("INSERT INTO Operacion(factura_id, direccion_id, tarifa_id, peso_empaquetado, usuario_id) VALUES(?1,?2,?3,?4, ?5)", parameters);
+
+                    System.out.println("Id: "+ id);
                     back(event);
                 } else {
                     error_label.setText("Por favor, rellena los campos obligatorios");
@@ -181,6 +244,8 @@ public class CreateController extends ViewController {
             query = "WHERE usuario_id = ?1";
             parameters = new String[]{String.valueOf(cliente.getId())};
         }
+        int length = parameters.length;
+        //String item = parameters[0];
         List<Object> direcciones = em.select(Direccion.class, -1, query, parameters);
 
         ObservableList direccionesItems = FXCollections.observableArrayList();
@@ -292,9 +357,10 @@ public class CreateController extends ViewController {
 
                     switch (tipoRuta) {
                         case "Marítima":
+                            ruta.setTipo(Ruta.TIPO_MARITIMA);
 
                             puertos = FXCollections.observableArrayList();
-                            List<Object> puertosList = em.select(Puerto.class, -1, " ORDER BY nombre DESC");
+                            List<Object> puertosList = em.select(Puerto.class, -1, " ORDER BY nombre DESC", new String[0]);
 
                             if (!puertosList.isEmpty()) {
                                 puertos.addAll(puertosList);
@@ -351,9 +417,10 @@ public class CreateController extends ViewController {
 
                             break;
                         case "Aerea":
+                            ruta.setTipo(Ruta.TIPO_AEREA);
 
                             aeropuertos = FXCollections.observableArrayList();
-                            List<Object> aeropuertosList = em.select(Aeropuerto.class, -1, " ORDER BY nombre DESC");
+                            List<Object> aeropuertosList = em.select(Aeropuerto.class, -1, " ORDER BY nombre DESC", new String[0]);
 
                             if (!aeropuertosList.isEmpty()) {
                                 aeropuertos.addAll(aeropuertosList);
@@ -411,6 +478,7 @@ public class CreateController extends ViewController {
 
                             break;
                         case "Terrestre":
+                            ruta.setTipo(Ruta.TIPO_TERRESTRE);
 
                             vehiculoLabel = new Label("Vehículo     *");
                             vehiculoLabel.setLayoutX(0);
@@ -483,7 +551,7 @@ public class CreateController extends ViewController {
             llegadaLabel.setLayoutX(190);
             llegadaLabel.setLayoutY(100);
             rutaPane.getChildren().add(llegadaLabel);
-            llegada = new DatePicker(LocalDate.now());
+            llegada = new DatePicker();
             llegada.setLayoutX(190);
             llegada.setLayoutY(135);
             llegada.setPrefWidth(120);
@@ -497,8 +565,6 @@ public class CreateController extends ViewController {
             pane.expandedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean isOpen) {
-                    System.out.println(String.valueOf(isOpen));
-
                     double newHeight = scrollContainer.getPrefHeight();
                     newHeight = isPaneOpen ? newHeight - PANE_HEIGHT : newHeight + PANE_HEIGHT;
 

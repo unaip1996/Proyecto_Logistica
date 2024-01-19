@@ -87,7 +87,7 @@ public class CreateController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = new String[]{pais, provincia, ciudad, calle, String.valueOf(numero), String.valueOf(cp), String.valueOf(piso), puerta, esc};
 
                     em.executeNativeQuery("INSERT INTO Direccion(pais, provincia, ciudad, calle, numero, codigo_postal, piso, puerta, esc) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9)", parameters);

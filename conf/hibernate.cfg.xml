@@ -15,12 +15,14 @@
         <property name="connection.username">admin</property>
         <property name="connection.password">AUwe52qkBz24WoKB9iet</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.pool_size">100</property>
 
         <mapping class="Entities.Usuarios.Usuario" />
         <mapping class="Entities.Usuarios.Cliente" />
         <mapping class="Entities.Usuarios.Admin" />
         <mapping class="Entities.operaciones.Direccion" />
         <mapping class="Entities.operaciones.Tarifa" />
+        <mapping class="Entities.operaciones.Coordenada" />
 
 
     </session-factory>

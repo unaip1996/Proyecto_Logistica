@@ -82,7 +82,7 @@ public class CreateController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (ViewUtils.validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     String[] parameters = fields;
 
                     em.executeNativeQuery("INSERT INTO Tarifa(peso, anchura, altura, diagonal, precio, nombre) VALUES(?1,?2,?3,?4,?5,?6)", parameters);

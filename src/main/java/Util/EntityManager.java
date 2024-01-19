@@ -69,8 +69,8 @@ public class EntityManager {
      * @param parameters Array de parámetros opcional, en el caso de usarse, los parámetros de criteria deberán llamarse ?<<int>> empezando por 0 y en orden
      * @return List<Entity>
      */
-    public List<Object> select(Class<?> classname, int pageNumber, String criteria, Object[]... parameters) {
-        List<Object> entities = null;
+    public List<Object> select(Class<?> classname, int pageNumber, String criteria, Object[] parameters) {
+        List entities = null;
 
         try {
             Session session = App.db.getSessionFactory().openSession();
@@ -108,7 +108,7 @@ public class EntityManager {
      * @param criteria String de query adyacente a la select, si está vacía hará SELECT *
      * @return List<Entity>
      */
-    public Object selectOne(Class<?> classname, String criteria, String[] parameters) {
+    public Object selectOne(Class<?> classname, String criteria, Object[] parameters) {
         Object entity = null;
 
         try {
@@ -119,7 +119,7 @@ public class EntityManager {
             Query query = (Query) session.createNativeQuery("SELECT * FROM "+tableName + " " + criteria, classname);
 
             for (int i = 0; i < parameters.length; i++) {
-                query.setParameter(i+1, parameters[i]);
+                query.setParameter(i+1, parameters[i].toString());
             }
 
             entity = query.getResultStream()
@@ -232,5 +232,31 @@ public class EntityManager {
         }
 
         return executed;
+    }
+    public int executeNativeQueryAndSelect(String sqlQuery, String[] parameters) {
+        int id = -1;
+
+
+        try {
+            Session session = App.db.getSessionFactory().openSession();
+
+            session.beginTransaction();
+
+//            sqlQuery += "; SELECT LAST_INSERT_ID() AS id;";
+
+            Query query = (Query) session.createNativeQuery(sqlQuery);
+
+            for (int i = 0; i < parameters.length; i++) {
+                query.setParameter(i+1, parameters[i]);
+            }
+
+            id = query.executeUpdate();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            LogHandler.log(Level.SEVERE, e.getMessage());
+        }
+
+        return id;
     }
 }

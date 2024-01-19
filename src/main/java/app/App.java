@@ -18,8 +18,7 @@ public class App extends Application {
 
         stage.setTitle(APP_NAME);
         stage.setScene(new Scene(FXMLLoader
-                .load(getClass().getResource("/Admin/Operacion/Create.fxml"))));
-                //.load(getClass().getResource("/Log_in.fxml"))));
+                .load(getClass().getResource("/Log_in.fxml"))));
         stage.show();
     }
 

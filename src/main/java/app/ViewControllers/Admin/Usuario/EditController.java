@@ -2,6 +2,7 @@ package app.ViewControllers.Admin.Usuario;
 
 import Entities.Usuarios.Usuario;
 import Util.EntityManager;
+import Util.ViewUtils;
 import app.ViewControllers.ViewController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -74,7 +75,7 @@ public class EditController extends ViewController {
 
                 save_button.setDisable(true);
 
-                if (validateFields(fields)) {
+                if (ViewUtils.validateStringFields(fields)) {
                     if (userExists()) {
                         error_label.setText("Nick o email existentes");
                     } else {
@@ -112,16 +113,6 @@ public class EditController extends ViewController {
         exists = usuario != null;
 
         return exists;
-    }
-
-    private boolean validateFields(String[] fields) {
-        boolean valid = true;
-
-        for (int i = 0; i < fields.length && valid; i++) {
-            valid = fields[i] != null && !fields[i].trim().isEmpty();
-        }
-
-        return valid;
     }
 
     private void back(ActionEvent event) {

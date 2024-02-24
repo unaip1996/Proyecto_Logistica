@@ -5,7 +5,7 @@
 
 Este proyecto es un trabajo de universidad, ahora mismo el servicio de BD en AWS no está en funcionamiento, precisamente por eso, este proyecto se ha vuelto de visibilidad pública y las credenciales están expuestas.
 
-Se pretende ampliar y darle mantenimiento como proyecto en un futuro.
+Se pretende ampliar y darle mantenimiento como producto en un futuro.
 
 Estas son las características desde las que partimos:
 
